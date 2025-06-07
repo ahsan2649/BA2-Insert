@@ -5,6 +5,7 @@ using UnityEngine.Splines;
 [RequireComponent(typeof(LineRenderer))]
 public class SplineLineRenderer : MonoBehaviour
 {
+    [SerializeField] SplineContainer splineContainer;
     private LineRenderer _lineRenderer;
     private Spline _spline;
 
@@ -12,7 +13,7 @@ public class SplineLineRenderer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _spline = GetComponent<SplineContainer>().Spline;
+        _spline = splineContainer.Spline;
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = numPoints;
     }

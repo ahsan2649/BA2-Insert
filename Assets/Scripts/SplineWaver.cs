@@ -13,7 +13,7 @@ public class SplineWaver : MonoBehaviour
     [SerializeField] private float amplitude = 1;
     [SerializeField] private float speed = 1;
     [SerializeField] private float offset = 1;
-    
+    [SerializeField] private bool reverse;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +31,10 @@ public class SplineWaver : MonoBehaviour
         for(int i = 1; i < _spline.Count - 1; i++)
         {
             float t = (float)i / (_spline.Count - 1);
+            if (reverse)
+            {
+                t = 1.0f - t;
+            }
             float waveOffset = Mathf.Sin(t * frequency * Mathf.PI * 2f + Time.time * speed + offset) * amplitude;
             Vector3 displacedPosition = _initialKnotPositions[i] + waveDirection.normalized * waveOffset;
             _spline[i] = new BezierKnot(displacedPosition, _spline[i].TangentIn, _spline[i].TangentOut, _spline[i].Rotation);

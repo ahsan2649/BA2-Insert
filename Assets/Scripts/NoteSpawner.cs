@@ -22,11 +22,12 @@ public class NoteSpawner : MonoBehaviour
         }
     }
 
-    void SpawnNote(int index)
+    void SpawnNote(int index, float speed = 1)
     {
         var note = Instantiate(m_NotePrefab, splineContainer[index].transform.position, splineContainer[index].transform.rotation);
         var splineAnimate = note.GetComponent<SplineAnimate>();
         splineAnimate.Container = splineContainer[index];
+        splineAnimate.MaxSpeed = speed;
         splineAnimate.Play();
     }
 }

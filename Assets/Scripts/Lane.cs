@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,8 +12,8 @@ public class Lane : MonoBehaviour
     
     [Tooltip("The prefab to spawn as a note. Must have a Note component attached.")]
     [SerializeField] private GameObject notePrefab;
-
-    readonly List<Note> _notes = new List<Note>();
+    
+    List<Note> _notes = new List<Note>();
 
     [Tooltip("The key that triggers a hit on the note")]
     [SerializeField] private InputAction key;
@@ -44,9 +45,6 @@ public class Lane : MonoBehaviour
         
     }
 
-    
-    // Called on keypress
-    // Tells the note to despawn
     void Hit(InputAction.CallbackContext context)
     {
         var note = _notes[0];

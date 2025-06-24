@@ -76,7 +76,7 @@ public class ChartParser : MonoBehaviour
 
 
 	public ChartObject CurrentChart = new ChartObject();
-	const float scrollSpeed = 15;
+	const float scrollSpeed = 20;
 
 	void Start()
 	{
@@ -101,10 +101,8 @@ public class ChartParser : MonoBehaviour
 		// 	}
 		// }
 
-		foreach (var note in CurrentChart.notes)
-		{
-			if (note.hasSpawned)
-			{
+		foreach (var note in CurrentChart.notes){
+			if (note.hasSpawned){
 				continue;
 			}
 
@@ -112,9 +110,7 @@ public class ChartParser : MonoBehaviour
 			var laneDistance = lane.GetSplineLength();
 			var travelTime = laneDistance / scrollSpeed; // 2 seconds to reach the judgement line
 
-
-			if (note.songPosition <= Conductor.GetComponent<Conductor>().songPosition + 2000)
-			{
+			if (note.songPosition <= Conductor.GetComponent<Conductor>().songPosition + 2000){
 				lane.SpawnNote(travelTime);
 				note.hasSpawned = true;
 				// I would like to just delete the note object at this point but I am itterating through the list

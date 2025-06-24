@@ -1,0 +1,17 @@
+{
+	"notes": [
+		{ "lane": 2.0, "songPosition": 1955.8251723793535, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 2955.8251723793537, "isHold": false, "holdLength": 0 },
+		{ "lane": 1.0, "songPosition": 3955.8251723793537, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 4143.325172379354, "isHold": false, "holdLength": 0 },
+		{ "lane": 1.0, "songPosition": 5955.825172379355, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 6955.825172379354, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 7955.825172379354, "isHold": false, "holdLength": 0 },
+		{ "lane": 1.0, "songPosition": 8955.825172379353, "isHold": false, "holdLength": 0 },
+		{ "lane": 1.0, "songPosition": 9955.825172379353, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 9955.825172379353, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 11955.825172379353, "isHold": false, "holdLength": 0 },
+		{ "lane": 1.0, "songPosition": 13955.825172379353, "isHold": false, "holdLength": 0 },
+		{ "lane": 2.0, "songPosition": 15955.825172379353, "isHold": false, "holdLength": 0 }
+	]
+}

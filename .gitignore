@@ -49,3 +49,6 @@ crashlytics-build.properties
 /.idea
 /UserSettings
 /Assets/Samples
+
+# Manually added
+.vscode

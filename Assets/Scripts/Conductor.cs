@@ -20,7 +20,7 @@ public class Conductor : MonoBehaviour
 
     void Update()
     {
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+		songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset) * 1000; //in milliseconds
         songPositionInBeats = songPosition / secPerBeat;
     }
 }

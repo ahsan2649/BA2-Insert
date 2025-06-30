@@ -53,7 +53,7 @@ Material:
     - _Color01Influence: 0.44
     - _Color02Influence: 0.3
     m_Colors:
-    - _Color01: {r: 1.6754715, g: 0.47585598, b: 0.13593435, a: 0}
+    - _Color01: {r: 3.6886053, g: 1.0476124, b: 0.29926392, a: 0}
     - _Color02: {r: 0.7283019, g: 0.1305446, b: 0.1744636, a: 0}
     - _Color03: {r: 0.85660374, g: 0.34594402, b: 0.13414732, a: 1}
   m_BuildTextureStacks: []

@@ -56,10 +56,10 @@ VisualEffect:
       - m_Value: 30
         m_Name: Duration
         m_Overridden: 1
-      - m_Value: 0.02
+      - m_Value: 0.13
         m_Name: Clip
         m_Overridden: 1
-      - m_Value: 2
+      - m_Value: 1.39
         m_Name: Size
         m_Overridden: 1
       - m_Value: 1
@@ -71,16 +71,16 @@ VisualEffect:
       - m_Value: 0.85
         m_Name: TexSpeedX
         m_Overridden: 1
-      - m_Value: 5
+      - m_Value: 3
         m_Name: DarkFlareSize
         m_Overridden: 1
-      - m_Value: 2
+      - m_Value: 1.5
         m_Name: BrightFlareSize
         m_Overridden: 1
-      - m_Value: 0.5
+      - m_Value: 0.8
         m_Name: BigSizeParticle
         m_Overridden: 1
-      - m_Value: 0.1
+      - m_Value: 0.5
         m_Name: SmallSizeParticle
         m_Overridden: 1
     m_Vector2f:
@@ -89,16 +89,16 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.51820636, y: 0.10196076, z: 0.7490196, w: 1}
+      - m_Value: {x: 1, y: 0.6444799, z: 0.19806935, w: 1}
         m_Name: FrontColor
         m_Overridden: 1
-      - m_Value: {x: 0.21873681, y: 0, z: 0.7490196, w: 1}
+      - m_Value: {x: 0.69387203, y: 0.14995982, z: 0.1559265, w: 1}
         m_Name: BackColor
         m_Overridden: 1
       - m_Value: {x: 0, y: 0.07846314, z: 0.7490196, w: 1}
         m_Name: DarkFlareColor
         m_Overridden: 1
-      - m_Value: {x: 0.39308646, y: 0.8436645, z: 0.90188676, w: 1}
+      - m_Value: {x: 0.9019608, y: 0.7088655, z: 0.39215687, w: 1}
         m_Name: ColorParticle
         m_Overridden: 1
     m_Uint:
@@ -125,8 +125,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 1.205759, g: 0.6127188, b: 2.1506023, a: 0}
-          key1: {r: 5.902714, g: 0.746192, b: 2.3915565, a: 1}
+          key0: {r: 2.1506028, g: 1.2558408, b: 0.61928344, a: 0}
+          key1: {r: 5.902714, g: 0.7726066, b: 3.6891901, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0.8}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -157,8 +157,8 @@ VisualEffect:
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 20.142815, b: 17.506319, a: 0}
-          key1: {r: 248.66211, g: 0, b: 1024, a: 1}
+          key0: {r: 20.142813, g: 5.8024726, b: 0, a: 0}
+          key1: {r: 1023.9999, g: 245.9578, b: 0, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0.8}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}

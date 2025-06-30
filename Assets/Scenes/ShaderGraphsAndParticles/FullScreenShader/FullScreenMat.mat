@@ -51,10 +51,10 @@ Material:
     - _Fullscreen_DstColorBlend: 10
     - _Fullscreen_SrcAlphaBlend: 1
     - _Fullscreen_SrcColorBlend: 5
-    - _VignetteIntesity: 0
-    - _VignettePower: 3.35
+    - _VignetteIntesity: 2.64
+    - _VignettePower: 9
     m_Colors:
-    - _Color: {r: 2.2824905, g: 4.9944625, b: 9.082412, a: 1}
+    - _Color: {r: 7.1547165, g: 3.2454877, b: 1.120455, a: 1}
     - _NoiseSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

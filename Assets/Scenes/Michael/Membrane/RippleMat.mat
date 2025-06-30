@@ -45,15 +45,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CrackStrength: 0.13
-    - _RippleCount: 4
+    - _CrackStrength: 0
+    - _RippleCount: 9.5
     - _RippleSpeed: 2
     - _RippleStrength: 1.62
     - _Threshhold: 3
     m_Colors:
     - _CrackColor: {r: 29.508846, g: 29.508846, b: 29.508846, a: 1}
     - _RippleCenter: {r: 0, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0, g: 0.7078116, b: 1, a: 1}
+    - _TintColor: {r: 0.70634747, g: 0.3833891, b: 0.7283019, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &226110600347991077

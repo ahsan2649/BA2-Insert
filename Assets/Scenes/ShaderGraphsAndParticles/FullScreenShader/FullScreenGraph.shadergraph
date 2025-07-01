@@ -33,6 +33,9 @@
     "m_CategoryData": [
         {
             "m_Id": "5832d0634bfa4ee69d0bf74cddb2b21f"
+        },
+        {
+            "m_Id": "ad7c7ade0ecd45b1836691def9d1aa9a"
         }
     ],
     "m_Nodes": [
@@ -475,15 +478,15 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 427.9998474121094,
-            "y": -98.40001678466797
+            "x": 239.1998748779297,
+            "y": -59.200008392333987
         },
         "m_Blocks": []
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 427.9998474121094,
-            "y": 101.5999755859375
+            "x": 239.1998748779297,
+            "y": 140.79998779296876
         },
         "m_Blocks": [
             {
@@ -1031,8 +1034,8 @@
     "m_ObjectId": "2844cf172f0640568f87409b76273e9c",
     "m_Title": "Vignette",
     "m_Position": {
-        "x": -1280.80029296875,
-        "y": -110.39999389648438
+        "x": -1280.7999267578125,
+        "y": -110.4000244140625
     }
 }
 
@@ -1668,9 +1671,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 193.5998992919922,
-            "y": -24.80002212524414,
-            "width": 208.00001525878907,
+            "x": -43.199954986572269,
+            "y": -19.99998664855957,
+            "width": 207.9999542236328,
             "height": 301.60003662109377
         }
     },
@@ -1816,32 +1819,7 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "5832d0634bfa4ee69d0bf74cddb2b21f",
     "m_Name": "",
-    "m_ChildObjectList": [
-        {
-            "m_Id": "3b790e71a5f7407cab12dc4878f78a59"
-        },
-        {
-            "m_Id": "95de4933d11c4083bab97f869b591628"
-        },
-        {
-            "m_Id": "008c3c89f3e24cd4bc447e059bbdf3e9"
-        },
-        {
-            "m_Id": "0efb58e3603845588e03e93668438151"
-        },
-        {
-            "m_Id": "40063d1168dd4cc2b72fddc5d94dcf29"
-        },
-        {
-            "m_Id": "d7f92ca1bac545ad8505da350e7474e9"
-        },
-        {
-            "m_Id": "b880b0efd2424a64b21535a200f1b861"
-        },
-        {
-            "m_Id": "24f46ca863204646837eb96a5027a7a5"
-        }
-    ]
+    "m_ChildObjectList": []
 }
 
 {
@@ -1877,10 +1855,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -20.000181198120118,
-            "y": -19.99999237060547,
-            "width": 105.60010528564453,
-            "height": 33.599979400634769
+            "x": -71.99996185302735,
+            "y": -82.39999389648438,
+            "width": 104.79997253417969,
+            "height": 33.599998474121097
         }
     },
     "m_Slots": [
@@ -3104,6 +3082,39 @@
         "y": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "ad7c7ade0ecd45b1836691def9d1aa9a",
+    "m_Name": "FullScreenEffect",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "3b790e71a5f7407cab12dc4878f78a59"
+        },
+        {
+            "m_Id": "95de4933d11c4083bab97f869b591628"
+        },
+        {
+            "m_Id": "008c3c89f3e24cd4bc447e059bbdf3e9"
+        },
+        {
+            "m_Id": "0efb58e3603845588e03e93668438151"
+        },
+        {
+            "m_Id": "40063d1168dd4cc2b72fddc5d94dcf29"
+        },
+        {
+            "m_Id": "d7f92ca1bac545ad8505da350e7474e9"
+        },
+        {
+            "m_Id": "b880b0efd2424a64b21535a200f1b861"
+        },
+        {
+            "m_Id": "24f46ca863204646837eb96a5027a7a5"
+        }
+    ]
 }
 
 {

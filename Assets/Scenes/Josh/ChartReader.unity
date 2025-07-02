@@ -1443,8 +1443,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 915511d21b08447f89bf40cbad538852, type: 3}
-  m_Resource: {fileID: 8300000, guid: 915511d21b08447f89bf40cbad538852, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d6edea24312614c1da2260fd976d2424, type: 3}
+  m_Resource: {fileID: 8300000, guid: d6edea24312614c1da2260fd976d2424, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.04
   m_Pitch: 1
@@ -1840,7 +1840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Conductor: {fileID: 1279546290}
   Lanes: {fileID: 165305937}
-  chartFile: {fileID: 4900000, guid: b6d66cf6349a44d558affb49c32681ed, type: 3}
+  chartFile: {fileID: 4900000, guid: 7a11c01a467484616b397894c56c3d33, type: 3}
   CurrentChart:
     notes: []
 --- !u!4 &2016433390

@@ -54,7 +54,7 @@ namespace Ahsan
             
         }
 
-        void PlaySongScheduled(Song song)
+        public void PlaySongScheduled(Song song)
         {
             AudioSource targetSource = !musicSource1.isPlaying ? musicSource1 : !musicSource2.isPlaying ? musicSource2 : null;
 

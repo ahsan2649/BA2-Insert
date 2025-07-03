@@ -37,8 +37,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _GlitchStrength: 5
-    - _NoiseAmount: 100
+    - _GlitchStrength: 0.1
+    - _NoiseAmount: 1
     - _ScanLinesStrength: 0
     m_Colors: []
   m_BuildTextureStacks: []

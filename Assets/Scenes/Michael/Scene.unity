@@ -5196,6 +5196,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956547278665387562, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956547278665387562, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ffafc6fd866c6b94ca3303fe322ab0c7, type: 2}
     - target: {fileID: 8169346113727654045, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
       propertyPath: m_Name
       value: WaterRippleLeft

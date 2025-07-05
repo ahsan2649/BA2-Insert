@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _NoiseTexture:
-        m_Texture: {fileID: 2800000, guid: 3adccb43f4be1eb45b178203302e3857, type: 3}
+        m_Texture: {fileID: 2800000, guid: f34ba27447b81c54aa8e6d3394823e64, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -55,10 +55,10 @@ Material:
     - _NoiseAmount: 30.89
     - _ScanLinesStrength: 1
     - _VignetteIntesity: 1.51
-    - _VignettePower: 3.07
+    - _VignettePower: 3.5
     m_Colors:
-    - _Color: {r: 7.1547165, g: 3.2454877, b: 1.120455, a: 1}
-    - _NoiseSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.97913563, g: 8.660506, b: 3.3146243, a: 1}
+    - _NoiseSpeed: {r: 0, g: -1, b: 0, a: 0}
     - _NoiseTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

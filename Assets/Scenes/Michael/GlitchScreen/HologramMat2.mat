@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HologramMat
+  m_Name: HologramMat2
   m_Shader: {fileID: -6465566751694194690, guid: eac9f3544455c5646906af435803f4ac, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -36,6 +36,7 @@ Material:
   disabledShaderPasses:
   - MOTIONVECTORS
   - DepthOnly
+  - SHADOWCASTER
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -66,7 +67,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _CastShadows: 1
+    - _CastShadows: 0
     - _Clip: 0
     - _Cull: 2
     - _DstBlend: 10
@@ -83,8 +84,8 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _FresnelColor: {r: 0, g: 3.1795769, b: 9.082411, a: 1}
+    - _FresnelColor: {r: 1.828955, g: 0, b: 3.6886058, a: 1}
     - _ScanlineSpeed: {r: 1, g: 2, b: 0, a: 0}
-    - _ScanlineTiling: {r: 1, g: 2, b: 0, a: 0}
+    - _ScanlineTiling: {r: 0.12, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -61,7 +61,7 @@ Material:
     - _Clip: 1
     - _Cull: 2
     - _DstBlend: 0
-    - _Grow: 0
+    - _Grow: 1
     - _Metallic: 1.96
     - _QueueControl: 0
     - _QueueOffset: 0

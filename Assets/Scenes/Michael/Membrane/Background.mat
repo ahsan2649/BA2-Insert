@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CrackTexture:
-        m_Texture: {fileID: 2800000, guid: c3fcf89fb2ad67b4cbfbebbe0e2edd3d, type: 3}
+        m_Texture: {fileID: 2800000, guid: e3ac187bea652b741bad22309e5f4ac3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
@@ -45,15 +45,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CrackStrength: 0
-    - _RippleCount: 1
-    - _RippleSpeed: 2.44
-    - _RippleStrength: 0.86
-    - _Threshhold: 3
+    - _CrackStrength: 0.5
+    - _RippleCount: 0
+    - _RippleSpeed: 5
+    - _RippleStrength: 3
+    - _Threshhold: 0
     m_Colors:
-    - _CrackColor: {r: 29.508846, g: 29.508846, b: 29.508846, a: 1}
-    - _RippleCenter: {r: 0, g: 25.69, b: 0, a: 0}
-    - _TintColor: {r: 1, g: 0.52944326, b: 0.013207495, a: 1}
+    - _CrackColor: {r: 1.3725796, g: 5.140445, b: 3.7177866, a: 1}
+    - _RippleCenter: {r: 0, g: 1, b: 0, a: 0}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &226110600347991077

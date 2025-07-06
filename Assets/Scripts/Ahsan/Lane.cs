@@ -58,7 +58,7 @@ public class Lane : MonoBehaviour
 	// Reverse means it starts from the other direction (the reverse spline) // this is changed for 2 lane objects for charting clarity
 	public void SpawnNote(float duration)
 	{
-		var noteGameObject = Instantiate(notePrefab, spline.Spline.EvaluatePosition(0), spline.transform.rotation);
+		var noteGameObject = Instantiate(notePrefab, spline.transform.position, spline.transform.rotation);
 
 		var note = noteGameObject.GetComponent<Note>();
 		_notes.Add(note);

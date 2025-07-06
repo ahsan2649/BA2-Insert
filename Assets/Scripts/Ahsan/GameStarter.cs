@@ -15,15 +15,12 @@ public class GameStarter : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        slider.value = 0;
-        slider.onValueChanged.AddListener(CallGameStart);
     }
 
-    void CallGameStart(float value)
+    public void CallGameStart(float value)
     {
         if (value >= 1)
         {
-            slider.onValueChanged.RemoveListener(CallGameStart);
             _filled = true;
             onGameStarted.Invoke();
         }
@@ -35,7 +32,7 @@ public class GameStarter : MonoBehaviour
     {
         if (Keyboard.current.fKey.isPressed && Keyboard.current.jKey.isPressed)
         {
-            slider.value += Time.deltaTime * 0.5f;
+            slider.value += Time.deltaTime * sliderFillSpeed;
         }
         else if (!_filled)
         {

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
   m_Name: Song3
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 8300000, guid: 79902f8aadf4c416eafd7d880d56dc04, type: 3}
-  bpm: 0
+  audioFile: {fileID: 8300000, guid: d74678dc855b047c2895137f1eda7829, type: 3}
+  chart: {fileID: 0}
+  bpm: 135
   firstBeatOffset: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Ahsan
@@ -10,14 +11,14 @@ namespace Ahsan
         public AudioSource musicSource1;
         public AudioSource musicSource2;
         private double nextPlaybackPosition;
-        public event Action<Song> OnNewSongStarted;
+        public UnityEvent<SongChartPair> OnNewSongStarted;
         
-        public Song Song1;
-        public Song Song2;
+        public SongChartPair Song1;
+        public SongChartPair Song2;
 
         private double songStartTime;
         private float secPerBeat;
-        private float songPosition;
+        public float songPosition;
         private float songPositionInBeats;
         private float firstBeatOffset;
         private void Awake()
@@ -28,12 +29,14 @@ namespace Ahsan
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            OnNewSongStarted += (song) =>
-            {
-                secPerBeat = 60f / song.bpm;
-                firstBeatOffset = song.firstBeatOffset;
-                songStartTime = (float)AudioSettings.dspTime;
-            };
+            
+        }
+
+        public void ResetTimeParams(SongChartPair songChartPair)
+        {
+            secPerBeat = 60f / songChartPair.bpm;
+            firstBeatOffset = songChartPair.firstBeatOffset;
+            songStartTime = (float)AudioSettings.dspTime;
         }
 
         // Update is called once per frame
@@ -54,7 +57,7 @@ namespace Ahsan
             
         }
 
-        public void PlaySongScheduled(Song song)
+        public void PlaySongScheduled(SongChartPair songChartPair)
         {
             AudioSource targetSource = !musicSource1.isPlaying ? musicSource1 : !musicSource2.isPlaying ? musicSource2 : null;
 
@@ -68,17 +71,17 @@ namespace Ahsan
                 nextPlaybackPosition = AudioSettings.dspTime;
             }
             
-            targetSource.clip = song.audioFile;
+            targetSource.clip = songChartPair.audioFile;
             targetSource.PlayScheduled(nextPlaybackPosition);
-            StartCoroutine(InvokeEventAfterDelay(nextPlaybackPosition - AudioSettings.dspTime, song));
+            StartCoroutine(InvokeEventAfterDelay(nextPlaybackPosition - AudioSettings.dspTime, songChartPair));
             
-            nextPlaybackPosition += song.audioFile.length;
+            nextPlaybackPosition += songChartPair.audioFile.length;
         }
         
-        private IEnumerator InvokeEventAfterDelay(double delay, Song song)
+        private IEnumerator InvokeEventAfterDelay(double delay, SongChartPair songChartPair)
         {
             yield return new WaitForSecondsRealtime((float)delay);
-            OnNewSongStarted?.Invoke(song);
+            OnNewSongStarted?.Invoke(songChartPair);
         }
     }
 }

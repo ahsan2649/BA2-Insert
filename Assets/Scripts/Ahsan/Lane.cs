@@ -4,79 +4,78 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
 
-
-public class Lane : MonoBehaviour
+namespace Ahsan
 {
-	[Tooltip("The spline to use for animating notes.")]
-	[SerializeField] private SplineContainer spline;
-
-	[Tooltip("The prefab to spawn as a note. Must have a Note component attached.")]
-	[SerializeField] private GameObject notePrefab;
-
-	List<Note> _notes = new List<Note>();
-
-	[Tooltip("The key that triggers a hit on the note")]
-	[SerializeField] private InputAction key;
-
-	private void OnEnable()
+	public class Lane : MonoBehaviour
 	{
-		key.Enable();
-	}
+		[SerializeField] SplineContainer spline;
+		[SerializeField] Note notePrefab;
+		[SerializeField] InputAction key;
 
-	private void Awake()
-	{
-		key.performed += Hit;
-	}
+		List<Note> notes = new();
 
-	private void OnDisable()
-	{
-		key.Disable();
-
-	}
-
-	private void Update()
-	{
-#if UNITY_EDITOR
-		if (Keyboard.current.spaceKey.wasPressedThisFrame)
+		public event Action<float> OnNoteDestroyed;
+	
+		private void OnEnable()
 		{
-			SpawnNote(5);
+			key.Enable();
+			key.performed += Hit;
+		
 		}
-#endif
 
-	}
+		private void OnDisable()
+		{
+			key.performed -= Hit;
+			key.Disable();
+		}
 
-	void Hit(InputAction.CallbackContext context)
-	{
-		var note = _notes[0];
-		_notes.RemoveAt(0);
-		note.OnNoteHit?.Invoke();
+		void Hit(InputAction.CallbackContext context)
+		{
+			if (notes.Count == 0)
+			{
+				return;
+			}
+			var note = notes[0];
+			if (note.splineAnimate.NormalizedTime < 0.5) // if leading note is less than halfway, don't register (adjust to designer preference)
+			{
+				return;
+			}
+			notes.Remove(note);
+			DestroyNote(note);
+		}
 
-	}
+		// Call this function to spawn a note.
+		// Duration means how long the note takes to go from one end to the other
+		public void SpawnNote(float duration)
+		{
+			var note = Instantiate(notePrefab, spline.transform.position, spline.transform.rotation);
+			notes.Add(note);
 
-	// Call this function to spawn a note.
-	// Duration means how long the note takes to go from one end to the other
-	// Reverse means it starts from the other direction (the reverse spline) // this is changed for 2 lane objects for charting clarity
-	public void SpawnNote(float duration)
-	{
-		var noteGameObject = Instantiate(notePrefab, spline.transform.position, spline.transform.rotation);
+			note.splineAnimate.Container = spline;
+			note.splineAnimate.Duration = duration;
 
-		var note = noteGameObject.GetComponent<Note>();
-		_notes.Add(note);
+			note.splineAnimate.Completed += (() =>
+			{
+				notes.Remove(note);
+				DestroyNote(note);
+			});
+		
+			note.splineAnimate.Play();
+		}
 
-		var splineAnimate = noteGameObject.GetComponent<SplineAnimate>();
-		splineAnimate.Container = spline;
-		splineAnimate.Duration = duration;
+		public void DestroyNote(Note note)
+		{
+			OnNoteDestroyed?.Invoke(note.splineAnimate.NormalizedTime);
+			Destroy(note.gameObject);
+		}
+	
 
-		splineAnimate.Play();
-
-
-	}
-
-	public float GetSplineLength()
-	{
-		// https://docs.unity3d.com/Packages/com.unity.splines@2.5/api/UnityEngine.Splines.SplineSlice-1.GetLength.html
-		// this isnt real? if you could figure this out that would be awesome
-		// return spline.GetLength()
-		return 30;
+		public float GetSplineLength()
+		{
+			// https://docs.unity3d.com/Packages/com.unity.splines@2.5/api/UnityEngine.Splines.SplineSlice-1.GetLength.html
+			// this isnt real? if you could figure this out that would be awesome
+			// return spline.GetLength()
+			return 30;
+		}
 	}
 }

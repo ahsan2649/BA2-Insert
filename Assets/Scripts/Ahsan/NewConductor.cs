@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Ahsan.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,7 +12,10 @@ namespace Ahsan
         public AudioSource musicSource1;
         public AudioSource musicSource2;
         private double nextPlaybackPosition;
-        public UnityEvent<SongChartPair> OnNewSongStarted;
+
+        public event Action<SongChartPair> OnNewSongStarted;
+        
+        public NewChartParser chartParser;
         
         public SongChartPair Song1;
         public SongChartPair Song2;
@@ -21,15 +25,17 @@ namespace Ahsan
         public float songPosition;
         private float songPositionInBeats;
         private float firstBeatOffset;
-        private void Awake()
+
+        private void OnEnable()
         {
+            OnNewSongStarted += ResetTimeParams;
+            OnNewSongStarted += chartParser.SetCurrentChart;
         }
 
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void OnDisable()
         {
-            
+            OnNewSongStarted -= ResetTimeParams;
+            OnNewSongStarted -= chartParser.SetCurrentChart;
         }
 
         public void ResetTimeParams(SongChartPair songChartPair)

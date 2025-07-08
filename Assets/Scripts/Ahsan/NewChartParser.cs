@@ -65,32 +65,12 @@ namespace Ahsan
 			}
 			var note = currentChart.notes[Mathf.Min(noteIndex, currentChart.notes.Length - 1)];
 			var lane = Lanes[note.lane % Lanes.Count];
-			var laneDistance = lane.GetSplineLength();
-			var travelTime = laneDistance / scrollSpeed; // 2 seconds to reach the judgement line
 
 			if (note.songPosition <= Conductor.songPosition + 2000){
-				lane.SpawnNote(travelTime);
+				lane.SpawnNote(2);
 				note.hasSpawned = true;
 				noteIndex++;
-				// I would like to just delete the note object at this point but I am itterating through the list
 			}
-			
-			// foreach (var note in currentChart.notes){
-			// 	if (note.hasSpawned){
-			// 		continue;
-			// 	}
-			//
-			// 	var lane = Lanes[note.lane % Lanes.Count];
-			// 	var laneDistance = lane.GetSplineLength();
-			// 	var travelTime = laneDistance / scrollSpeed; // 2 seconds to reach the judgement line
-			//
-			// 	if (note.songPosition <= Conductor.songPosition + 2000){
-			// 		lane.SpawnNote(travelTime);
-			// 		note.hasSpawned = true;
-			// 		// I would like to just delete the note object at this point but I am itterating through the list
-			// 	}
-			// }
-
 		}
 	}
 }

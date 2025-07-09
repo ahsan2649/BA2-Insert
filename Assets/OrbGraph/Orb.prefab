@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4019255677643320433}
   - component: {fileID: 651769352236161573}
   - component: {fileID: 1121909358101066152}
+  - component: {fileID: 3903573125051383999}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -284,3 +285,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bed0457f20ed5b6a6ee3aa68311037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splineAnimate: {fileID: 0}
+--- !u!210 &3903573125051383999
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706865500459751174}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 8
+  m_SortAtRoot: 0

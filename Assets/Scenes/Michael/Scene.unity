@@ -1084,6 +1084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233439891}
+  - component: {fileID: 233439892}
   m_Layer: 0
   m_Name: Worlds
   m_TagString: Untagged
@@ -1110,6 +1111,35 @@ Transform:
   - {fileID: 810014501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &233439892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233439890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5533d654bb19f41bbb5d8545115e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldsParent: {fileID: 233439891}
+  switchInterval: 5
+  glitchDuration: 2
+  glitchMaterial: {fileID: 2100000, guid: 7cd45b09d3462ad46a41e92cb7b97953, type: 2}
+  glitchNoiseAmount: 100
+  glitchStrength: 30
+  glitchScanLinesStrength: 0
+  membraneMainTextures:
+  - {fileID: 2800000, guid: b17d76413cb544141b837b2b4dce7002, type: 3}
+  - {fileID: 2800000, guid: 38857701c54f4de42991f487bfed6e6d, type: 3}
+  - {fileID: 2800000, guid: f34ba27447b81c54aa8e6d3394823e64, type: 3}
+  - {fileID: 2800000, guid: c4a3791b7d106e845b943dcbaa42ffb3, type: 3}
+  membraneRenderers:
+  - {fileID: 7392568033206323849}
+  - {fileID: 2199970784793004209}
+  rippleMaterialIndex: 1
+  mainTextureProperty: _MainTexture
 --- !u!1 &233577918
 GameObject:
   m_ObjectHideFlags: 0
@@ -4321,7 +4351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 1018189350}
-  notePrefab: {fileID: 6706865500459751174, guid: 41c5570b5a56360458c38858257c9195, type: 3}
+  notePrefab: {fileID: 1121909358101066152, guid: 41c5570b5a56360458c38858257c9195, type: 3}
   key:
     m_Name: Key
     m_Type: 0
@@ -10382,6 +10412,11 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_SortAtRoot: 0
+--- !u!23 &2199970784793004209 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1666405493371251767, guid: d32bc698e9426b541bec765c82a9ff17, type: 3}
+  m_PrefabInstance: {fileID: 2199970784793004206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7392568033206323846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10471,6 +10506,11 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_SortAtRoot: 0
+--- !u!23 &7392568033206323849 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5956547278665387562, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
+  m_PrefabInstance: {fileID: 7392568033206323846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

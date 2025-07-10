@@ -1135,11 +1135,34 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 38857701c54f4de42991f487bfed6e6d, type: 3}
   - {fileID: 2800000, guid: f34ba27447b81c54aa8e6d3394823e64, type: 3}
   - {fileID: 2800000, guid: c4a3791b7d106e845b943dcbaa42ffb3, type: 3}
+  membraneTintColors:
+  - {r: 0.85660374, g: 0.21819143, b: 0.21819143, a: 1}
+  - {r: 0.7676726, g: 0.93962264, b: 0.11878247, a: 1}
+  - {r: 0.92897844, g: 0, b: 1, a: 1}
+  - {r: 0.013207495, g: 0.7385905, b: 1, a: 1}
+  - {r: 0.026313305, g: 1, b: 0, a: 1}
   membraneRenderers:
   - {fileID: 7392568033206323849}
   - {fileID: 2199970784793004209}
   rippleMaterialIndex: 1
   mainTextureProperty: _MainTexture
+  tintColorProperty: _TintColor
+  laneRenderers:
+  - {fileID: 327794781}
+  - {fileID: 1271032730}
+  - {fileID: 1605581}
+  - {fileID: 1320693097}
+  - {fileID: 1421063934}
+  - {fileID: 1866539489}
+  - {fileID: 1252314635}
+  - {fileID: 1878598446}
+  - {fileID: 269813756}
+  - {fileID: 175503036}
+  - {fileID: 1018189348}
+  laneColorProperties:
+  - _Color01
+  - _Color02
+  - _Color03
 --- !u!1 &233577918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 327794783}
-  notePrefab: {fileID: 6706865500459751174, guid: 41c5570b5a56360458c38858257c9195, type: 3}
+  notePrefab: {fileID: 1121909358101066152, guid: 41c5570b5a56360458c38858257c9195, type: 3}
   key:
     m_Name: Key
     m_Type: 0

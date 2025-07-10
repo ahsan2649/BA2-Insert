@@ -17,10 +17,8 @@ public class WorldController : MonoBehaviour
     public float glitchScanLinesStrength = 0f;
 
     [Header("Membrane Appearance")]
+    [Tooltip("Main ripple texture per world, in same order as your Worlds.")]
     public Texture[] membraneMainTextures;
-    public Color[] membraneTintColors;
-
-    [Tooltip("Left & Right membrane renderers (Gradient=0, RippleMat=1).")]
     public Renderer[] membraneRenderers;
     public int rippleMaterialIndex = 1;
     public string mainTextureProperty = "_MainTex";
@@ -30,112 +28,132 @@ public class WorldController : MonoBehaviour
     [Tooltip("All your lane Renderers")]
     public Renderer[] laneRenderers;
     [Tooltip("Shader property names on your gradient shader")]
-    public string[] laneColorProperties = new string[] { "_Color01", "_Color02", "_Color03" };
+    public string[] laneColorProperties = new[] { "_Color01", "_Color02", "_Color03" };
+
+    [Header("Circuit Appearance (World3)")]
+    [Tooltip("Renderers on your circuit world (e.g. the big CircuitBackground quad)")]
+    public Renderer[] circuitRenderers;
+    [Tooltip("Which sub-material index contains the circuit/flow shader")]
+    public int circuitMaterialIndex = 0;
+    public string circuitColorProperty = "_CircuitColor";
+    public string flowColorProperty = "_FlowColor";
+    [Tooltip("0 = black, 1 = same brightness, >1 = even brighter")]
+    [Range(0f, 12f)] public float circuitDimFactor = 0.5f;
+    [Range(0f, 20f)] public float flowBrightFactor = 1.5f;
 
     // internals
     GameObject[] worlds;
     int currentIndex = 0;
-    float defaultNoise, defaultStrength, defaultScan;
+    float defaultNoise,
+            defaultStrength,
+            defaultScan;
 
     void Start()
     {
-        // 1) collect your worlds
+        // gather worlds and activate only the first
         int n = worldsParent.childCount;
         worlds = new GameObject[n];
         for (int i = 0; i < n; i++)
         {
-            var w = worldsParent.GetChild(i).gameObject;
-            worlds[i] = w;
-            w.SetActive(i == 0);
+            worlds[i] = worldsParent.GetChild(i).gameObject;
+            worlds[i].SetActive(i == 0);
         }
 
-        // 2) cache glitch defaults & force idle state
-        if (glitchMaterial == null)
-        {
-            Debug.LogError("Assign your GlitchMat!");
-            enabled = false;
-            return;
-        }
+        // cache default glitch values & reset
         defaultNoise = glitchMaterial.GetFloat("_NoiseAmount");
         defaultStrength = glitchMaterial.GetFloat("_GlitchStrength");
         defaultScan = glitchMaterial.GetFloat("_ScanLinesStrength");
-        SetGlitchValues(defaultNoise, defaultStrength, defaultScan);
+        SetGlitch(defaultNoise, defaultStrength, defaultScan);
 
-        // 3) apply initial appearance
+        // apply initial appearance
         ApplyAppearance(0);
 
-        // 4) start the auto‐loop
-        StartCoroutine(AutoSwitchRoutine());
+        // start the auto-switch coroutine
+        StartCoroutine(AutoSwitch());
     }
 
-    IEnumerator AutoSwitchRoutine()
+    IEnumerator AutoSwitch()
     {
         while (true)
         {
             yield return new WaitForSeconds(switchInterval);
 
-            // swap worlds
+            // deactivate current, advance index, activate next
             worlds[currentIndex].SetActive(false);
             currentIndex = (currentIndex + 1) % worlds.Length;
             worlds[currentIndex].SetActive(true);
 
-            // apply texture + tint
+            // apply all appearance changes
             ApplyAppearance(currentIndex);
 
             // flash glitch
-            SetGlitchValues(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
+            SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
             yield return new WaitForSeconds(glitchDuration);
-            SetGlitchValues(defaultNoise, defaultStrength, defaultScan);
+            SetGlitch(defaultNoise, defaultStrength, defaultScan);
         }
     }
 
-    void ApplyAppearance(int worldIndex)
+    void ApplyAppearance(int idx)
     {
-        // --- Membrane: texture + tint ---
-        if (membraneMainTextures != null
-         && worldIndex < membraneMainTextures.Length
-         && membraneTintColors != null
-         && worldIndex < membraneTintColors.Length
-         && membraneRenderers != null)
-        {
-            Texture newMain = membraneMainTextures[worldIndex];
-            Color newTint = membraneTintColors[worldIndex];
+        // 1) pick one HDR color
+        Color rndHDR = Color.HSVToRGB(
+            Random.value,
+            1f,
+            Random.Range(1f, 5f),
+            true
+        );
 
+        // 2) swap membrane ripple texture + tint
+        if (membraneMainTextures != null && idx < membraneMainTextures.Length)
+        {
+            Texture newMain = membraneMainTextures[idx];
             foreach (var rend in membraneRenderers)
             {
                 var mats = rend.materials;
                 if (rippleMaterialIndex < mats.Length)
                 {
                     mats[rippleMaterialIndex].SetTexture(mainTextureProperty, newMain);
-                    mats[rippleMaterialIndex].SetColor(tintColorProperty, newTint);
+                    mats[rippleMaterialIndex].SetColor(tintColorProperty, rndHDR);
                     rend.materials = mats;
                 }
             }
         }
 
-        // --- Lanes: random HDR color ---
-        Color randomHDR = Color.HSVToRGB(
-            Random.value,    // random hue
-            1f,              // full saturation
-            Random.Range(1f, 5f),  // brightness >1 for HDR
-            true             // HDR mode
-        );
-
-        if (laneRenderers != null && laneColorProperties != null)
+        // 3) recolor lanes
+        foreach (var lr in laneRenderers)
         {
-            foreach (var lr in laneRenderers)
+            var mat = lr.material;
+            foreach (var prop in laneColorProperties)
+                mat.SetColor(prop, rndHDR);
+        }
+
+        // 4) if this is World3 (idx==2), tint the circuit & flow
+        if (idx == 2 && circuitRenderers != null)
+        {
+            // convert to HSV
+            Color.RGBToHSV(rndHDR, out float h, out float s, out float v);
+
+            // compute darker and brighter variants
+            Color darkCircuit = Color.HSVToRGB(h, s, v * circuitDimFactor, true);
+            Color brightFlow = Color.HSVToRGB(h, s, v * flowBrightFactor, true);
+
+            foreach (var cr in circuitRenderers)
             {
-                var mat = lr.material;  // instance
-                foreach (var prop in laneColorProperties)
-                    mat.SetColor(prop, randomHDR);
+                var mats = cr.materials;
+                if (circuitMaterialIndex < mats.Length)
+                {
+                    mats[circuitMaterialIndex].SetColor(circuitColorProperty, darkCircuit);
+                    mats[circuitMaterialIndex].SetColor(flowColorProperty, brightFlow);
+                    cr.materials = mats;
+                }
             }
         }
     }
 
-    void SetGlitchValues(float noise, float strength, float scan)
+    void SetGlitch(float noise, float str, float scan)
     {
         glitchMaterial.SetFloat("_NoiseAmount", noise);
-        glitchMaterial.SetFloat("_GlitchStrength", strength);
+        glitchMaterial.SetFloat("_GlitchStrength", str);
         glitchMaterial.SetFloat("_ScanLinesStrength", scan);
     }
 }

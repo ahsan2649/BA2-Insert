@@ -24,6 +24,10 @@ public class WorldController : MonoBehaviour
     public string mainTextureProperty = "_MainTex";
     public string tintColorProperty = "_TintColor";
 
+    [Tooltip("How much darker the membrane tint is relative to the lane color (0–1)")]
+    [Range(0f, 1f)]
+    public float membraneDimFactor = 0.8f;
+
     [Header("Lane Appearance")]
     [Tooltip("All your lane Renderers")]
     public Renderer[] laneRenderers;
@@ -37,6 +41,7 @@ public class WorldController : MonoBehaviour
     public int circuitMaterialIndex = 0;
     public string circuitColorProperty = "_CircuitColor";
     public string flowColorProperty = "_FlowColor";
+
     [Tooltip("0 = black, 1 = same brightness, >1 = even brighter")]
     [Range(0f, 12f)] public float circuitDimFactor = 0.5f;
     [Range(0f, 20f)] public float flowBrightFactor = 1.5f;
@@ -68,7 +73,7 @@ public class WorldController : MonoBehaviour
         // apply initial appearance
         ApplyAppearance(0);
 
-        // start the auto-switch coroutine
+        // start automatic switching
         StartCoroutine(AutoSwitch());
     }
 
@@ -78,15 +83,15 @@ public class WorldController : MonoBehaviour
         {
             yield return new WaitForSeconds(switchInterval);
 
-            // deactivate current, advance index, activate next
+            // swap worlds
             worlds[currentIndex].SetActive(false);
             currentIndex = (currentIndex + 1) % worlds.Length;
             worlds[currentIndex].SetActive(true);
 
-            // apply all appearance changes
+            // update colors/textures
             ApplyAppearance(currentIndex);
 
-            // flash glitch
+            // glitch flash
             SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
             yield return new WaitForSeconds(glitchDuration);
             SetGlitch(defaultNoise, defaultStrength, defaultScan);
@@ -95,15 +100,20 @@ public class WorldController : MonoBehaviour
 
     void ApplyAppearance(int idx)
     {
-        // 1) pick one HDR color
-        Color rndHDR = Color.HSVToRGB(
+        // 1) pick a base HDR color for lanes
+        Color laneHDR = Color.HSVToRGB(
             Random.value,
             1f,
             Random.Range(1f, 5f),
             true
         );
 
-        // 2) swap membrane ripple texture + tint
+        // 2) derive a slightly darker HDR for membranes
+        Color.RGBToHSV(laneHDR, out float h, out float s, out float v);
+        float vMem = v * membraneDimFactor;
+        Color membraneHDR = Color.HSVToRGB(h, s, vMem, true);
+
+        // 3) swap membrane ripple texture + tint
         if (membraneMainTextures != null && idx < membraneMainTextures.Length)
         {
             Texture newMain = membraneMainTextures[idx];
@@ -113,27 +123,23 @@ public class WorldController : MonoBehaviour
                 if (rippleMaterialIndex < mats.Length)
                 {
                     mats[rippleMaterialIndex].SetTexture(mainTextureProperty, newMain);
-                    mats[rippleMaterialIndex].SetColor(tintColorProperty, rndHDR);
+                    mats[rippleMaterialIndex].SetColor(tintColorProperty, membraneHDR);
                     rend.materials = mats;
                 }
             }
         }
 
-        // 3) recolor lanes
+        // 4) recolor lanes with the brighter HDR
         foreach (var lr in laneRenderers)
         {
             var mat = lr.material;
             foreach (var prop in laneColorProperties)
-                mat.SetColor(prop, rndHDR);
+                mat.SetColor(prop, laneHDR);
         }
 
-        // 4) if this is World3 (idx==2), tint the circuit & flow
+        // 5) if this is World3 (idx == 2), tint the circuit & flow as before
         if (idx == 2 && circuitRenderers != null)
         {
-            // convert to HSV
-            Color.RGBToHSV(rndHDR, out float h, out float s, out float v);
-
-            // compute darker and brighter variants
             Color darkCircuit = Color.HSVToRGB(h, s, v * circuitDimFactor, true);
             Color brightFlow = Color.HSVToRGB(h, s, v * flowBrightFactor, true);
 

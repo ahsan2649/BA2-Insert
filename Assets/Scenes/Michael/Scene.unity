@@ -1141,6 +1141,7 @@ MonoBehaviour:
   rippleMaterialIndex: 1
   mainTextureProperty: _MainTexture
   tintColorProperty: _TintColor
+  membraneDimFactor: 0.1
   laneRenderers:
   - {fileID: 327794781}
   - {fileID: 1271032730}

@@ -45,8 +45,14 @@ namespace Ahsan
             songStartTime = (float)AudioSettings.dspTime;
         }
 
-        // Update is called once per frame
-        void Update()
+		void Start()
+		{
+			ResetTimeParams(Song1);
+			chartParser.SetCurrentChart(Song1);
+		}
+
+		// Update is called once per frame
+		void Update()
         {
             songPosition = (float)(AudioSettings.dspTime - songStartTime - firstBeatOffset) * 1000; //in milliseconds
             songPositionInBeats = (songPosition / 1000f) / secPerBeat;
@@ -82,6 +88,8 @@ namespace Ahsan
             StartCoroutine(InvokeEventAfterDelay(nextPlaybackPosition - AudioSettings.dspTime, songChartPair));
             
             nextPlaybackPosition += songChartPair.audioFile.length;
+
+			chartParser.SetCurrentChart(songChartPair);
         }
         
         private IEnumerator InvokeEventAfterDelay(double delay, SongChartPair songChartPair)

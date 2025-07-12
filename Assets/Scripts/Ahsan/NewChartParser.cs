@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Ahsan.ScriptableObjects;
 using UnityEngine;
@@ -44,6 +45,7 @@ namespace Ahsan
 		public NewConductor Conductor;
 		public List<Lane> Lanes;
 
+		// This should be an editable setting with range like 5-30
 		const float scrollSpeed = 20;
 
 		private Chart currentChart;
@@ -61,13 +63,14 @@ namespace Ahsan
 		{
 			if (!currentChart)
 			{
+				print("no chart");
 				return;
 			}
 			var note = currentChart.notes[Mathf.Min(noteIndex, currentChart.notes.Length - 1)];
 			var lane = Lanes[note.lane % Lanes.Count];
 
-			if (note.songPosition <= Conductor.songPosition + 2000){
-				lane.SpawnNote(2);
+			if (note.songPosition <= Conductor.songPosition + (scrollSpeed*100)){
+				lane.SpawnNote(scrollSpeed/10);
 				note.hasSpawned = true;
 				noteIndex++;
 			}

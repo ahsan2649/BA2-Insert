@@ -730,7 +730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 284924417}
-  notePrefab: {fileID: 6706865500459751174, guid: 41c5570b5a56360458c38858257c9195, type: 3}
+  notePrefab: {fileID: 1121909358101066152, guid: 41c5570b5a56360458c38858257c9195, type: 3}
   key:
     m_Name: Key
     m_Type: 0
@@ -1424,7 +1424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1279546293}
-  - component: {fileID: 1279546292}
+  - component: {fileID: 1279546294}
   - component: {fileID: 1279546291}
   m_Layer: 0
   m_Name: AudioManager
@@ -1530,25 +1530,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1279546292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279546290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ceeacfcdc007242b25ce26a9605e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  songBpm: 60
-  secPerBeat: 0
-  songPosition: 0
-  songPositionInBeats: 0
-  dspSongTime: 0
-  musicSource: {fileID: 1279546291}
-  firstBeatOffset: 1.5
 --- !u!4 &1279546293
 Transform:
   m_ObjectHideFlags: 0
@@ -1564,6 +1545,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279546294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279546290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6df99e691354656840a3c1851af488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource1: {fileID: 1279546291}
+  musicSource2: {fileID: 1279546291}
+  chartParser: {fileID: 2016433391}
+  Song1: {fileID: 11400000, guid: 3f71f5a40c9b547ecbaa7447486983cd, type: 2}
+  Song2: {fileID: 11400000, guid: 3f71f5a40c9b547ecbaa7447486983cd, type: 2}
+  songPosition: 0
 --- !u!1 &1687735296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1817,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016433390}
-  - component: {fileID: 2016433389}
+  - component: {fileID: 2016433392}
+  - component: {fileID: 2016433391}
   m_Layer: 0
   m_Name: NoteManager
   m_TagString: Untagged
@@ -1826,23 +1826,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2016433389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016433388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0447045a933ff47c49360fa4bd2ba061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Conductor: {fileID: 1279546290}
-  Lanes: {fileID: 165305937}
-  chartFile: {fileID: 4900000, guid: 7a11c01a467484616b397894c56c3d33, type: 3}
-  CurrentChart:
-    notes: []
 --- !u!4 &2016433390
 Transform:
   m_ObjectHideFlags: 0
@@ -1858,6 +1841,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016433391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016433388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff45316b6a7424ebd0f53b228b9614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Conductor: {fileID: 1279546294}
+  Lanes:
+  - {fileID: 711664071}
+  - {fileID: 284924418}
+--- !u!114 &2016433392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016433388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c7e148c08bd4505ae253e578896ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lanes:
+  - {fileID: 711664071}
+  - {fileID: 284924418}
+  Conductor: {fileID: 1279546294}
+  perfectHits: 0
+  goodHits: 0
+  misses: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

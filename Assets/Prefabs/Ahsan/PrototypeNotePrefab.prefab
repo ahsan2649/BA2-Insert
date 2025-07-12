@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bed0457f20ed5b6a6ee3aa68311037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splineAnimate: {fileID: 0}

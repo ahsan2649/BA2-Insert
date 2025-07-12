@@ -4,9 +4,10 @@ using UnityEngine.Splines;
 
 namespace Ahsan
 {
-    [RequireComponent(typeof(SplineAnimate))]
-    public class Note : MonoBehaviour
-    {
-        public SplineAnimate splineAnimate;
+	[RequireComponent(typeof(SplineAnimate))]
+	public class Note : MonoBehaviour
+	{
+		public SplineAnimate splineAnimate;
+		public float hitTime;
     }
 }

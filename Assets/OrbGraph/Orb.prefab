@@ -263,8 +263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_LoopMode: 1
+  m_PlayOnAwake: 0
+  m_LoopMode: 0
   m_Method: 0
   m_Duration: 1
   m_MaxSpeed: 10
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bed0457f20ed5b6a6ee3aa68311037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splineAnimate: {fileID: 0}
+  splineAnimate: {fileID: 651769352236161573}
 --- !u!210 &3903573125051383999
 SortingGroup:
   m_ObjectHideFlags: 0

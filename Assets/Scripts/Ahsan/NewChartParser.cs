@@ -46,8 +46,12 @@ namespace Ahsan
 		public List<Lane> Lanes;
 
 		// This should be an editable setting with range like 5-30
-		const float scrollSpeed = 20;
+		const float scrollSpeed = 10;
 
+		// To be able to hit a note late, it still has to exist past the perfect point
+		// this decribes the amount of ms the note will persist for to allow being hit late
+		const float lateWindow = 250;
+		
 		private Chart currentChart;
 		
 		int noteIndex = 0;
@@ -69,8 +73,8 @@ namespace Ahsan
 			var note = currentChart.notes[Mathf.Min(noteIndex, currentChart.notes.Length - 1)];
 			var lane = Lanes[note.lane % Lanes.Count];
 
-			if (note.songPosition <= Conductor.songPosition + (scrollSpeed*100)){
-				lane.SpawnNote(scrollSpeed/10);
+			if (note.songPosition - lateWindow <= Conductor.songPosition + (scrollSpeed*100)){
+				lane.SpawnNote(scrollSpeed/10, Conductor.songPosition + (scrollSpeed * 100));
 				note.hasSpawned = true;
 				noteIndex++;
 			}

@@ -36,7 +36,7 @@ namespace Ahsan
 				return;
 			}
 			var note = notes[0];
-			if (note.splineAnimate.NormalizedTime < 0.5) // if leading note is less than halfway, don't register (adjust to designer preference)
+			if (note.splineAnimate.NormalizedTime < 0.7) // if leading note is less than halfway, don't register (adjust to designer preference)
 			{
 				return;
 			}
@@ -46,11 +46,11 @@ namespace Ahsan
 
 		// Call this function to spawn a note.
 		// Duration means how long the note takes to go from one end to the other
-		public void SpawnNote(float duration)
+		public void SpawnNote(float duration, float hitTime)
 		{
 			var note = Instantiate(notePrefab, spline.transform.position, spline.transform.rotation);
 			notes.Add(note);
-
+			note.hitTime = hitTime;
 			note.splineAnimate.Container = spline;
 			note.splineAnimate.Duration = duration;
 
@@ -65,7 +65,7 @@ namespace Ahsan
 
 		public void DestroyNote(Note note)
 		{
-			OnNoteDestroyed?.Invoke(note.splineAnimate.NormalizedTime);
+			OnNoteDestroyed?.Invoke(note.hitTime);
 			Destroy(note.gameObject);
 		}
 	

@@ -111,7 +111,7 @@ public class ChartParser : MonoBehaviour
 			var travelTime = laneDistance / scrollSpeed; // 2 seconds to reach the judgement line
 
 			if (note.songPosition <= Conductor.GetComponent<Conductor>().songPosition + 2000){
-				lane.SpawnNote(travelTime);
+				// lane.SpawnNote(travelTime);
 				note.hasSpawned = true;
 				// I would like to just delete the note object at this point but I am itterating through the list
 			}

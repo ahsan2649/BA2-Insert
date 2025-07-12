@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233439890}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc5533d654bb19f41bbb5d8545115e9c, type: 3}
   m_Name: 
@@ -3496,7 +3496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &810014501
 Transform:
   m_ObjectHideFlags: 0
@@ -3530,16 +3530,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundRenderer: {fileID: 9799020}
-  rippleCenter: {x: 0, y: 1}
+  rippleCenter: {x: 0, y: 10}
   rippleCount: 1
-  rippleSpeed: 1
-  rippleStrength: 1
+  rippleSpeed: 2
+  rippleStrength: 3
   tintColor: {r: 1, g: 1, b: 1, a: 1}
   crackTexture: {fileID: 2800000, guid: e3ac187bea652b741bad22309e5f4ac3, type: 3}
-  crackStrength: 0.8
-  crackColor: {r: 0.123268016, g: 0.6714049, b: 0.7509433, a: 1}
-  threshold: 0
+  crackStrength: 2
+  crackColor: {r: 3.6820207, g: 1.0064996, b: 6.0075464, a: 1}
+  threshold: 0.488
   liveEditInEditor: 0
+  crackTextureTiling: {x: 1, y: 1}
+  crackTextureOffset: {x: 0, y: 0}
+  collisionCrackStrength: 3
+  collisionCrackColorIntensity: 3
+  crackResetDelay: 1
   bubblePrefab: {fileID: 928864994809126352, guid: 5b7265a88f7bf9847844531dfbb361ee, type: 3}
   maxBubbles: 15
 --- !u!1 &858781858
@@ -5617,7 +5622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1223526068
 Transform:
   m_ObjectHideFlags: 0

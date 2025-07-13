@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3369084124166370966
 Transform:
   m_ObjectHideFlags: 0
@@ -308,7 +308,11 @@ MonoBehaviour:
   startAnimators:
   - triggerName: fade
     animator: {fileID: 0}
-  introSegment: {fileID: 0}
+  - triggerName: slide
+    animator: {fileID: 0}
+  - triggerName: fade
+    animator: {fileID: 0}
+  introSegment: {fileID: 11400000, guid: 2e1ee160cd29b46ff8c364fde73b9968, type: 2}
 --- !u!1 &5835405471971204089
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,6 +346,7 @@ Transform:
   - {fileID: 5906345991231841952}
   - {fileID: 7499266961714578550}
   - {fileID: 2624863426009521805}
+  - {fileID: 4625539550426147709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6492623169036506887
@@ -360,7 +365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2273547772269145808
 Transform:
   m_ObjectHideFlags: 0
@@ -390,7 +395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6df99e691354656840a3c1851af488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 5142542708150351270}
   gameStarter: {fileID: 1124704850504498898}
+  segmentSequencer: {fileID: 3473514022193760606}
   musicSource1: {fileID: 4745291604620622294}
   musicSource2: {fileID: 7073017542976628315}
   songPosition: 0
@@ -411,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7499266961714578550
 Transform:
   m_ObjectHideFlags: 0
@@ -456,7 +463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5906345991231841952
 Transform:
   m_ObjectHideFlags: 0
@@ -489,7 +496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2624863426009521805
 Transform:
   m_ObjectHideFlags: 0
@@ -525,3 +532,56 @@ MonoBehaviour:
   goodHits: 0
   greatHits: 0
   misses: 0
+--- !u!1 &9185478154708192012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4625539550426147709}
+  - component: {fileID: 3473514022193760606}
+  m_Layer: 0
+  m_Name: SegmentSequencer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4625539550426147709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185478154708192012}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4606401347987298096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3473514022193760606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185478154708192012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88968d07c0b84a5a92d1d14966fa276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 5142542708150351270}
+  newConductor: {fileID: 4078667135500837469}
+  segments:
+  - {fileID: 11400000, guid: 1dd48727d5d57486dbcb33f524234b56, type: 2}
+  - {fileID: 11400000, guid: 0687970b9db00465fb43a012ec97e914, type: 2}
+  - {fileID: 11400000, guid: 93ee20bad5a6c4d4ea6625aa6a9f0a26, type: 2}
+  - {fileID: 11400000, guid: bda6c3c29da264717874e64ad9612cba, type: 2}
+  currentSegment: -1
+  currentWorldVariant: 1

@@ -22,8 +22,9 @@ namespace Ahsan
 		public int misses;
     
         public event Action<Segment> OnDecisionWindowEnter;
-        public event Action OnDecisionWindowExit;
+        public event Action<WorldVariant> OnDecisionWindowExit;
 
+        public WorldVariant selectedVariant = WorldVariant.Anthropocene;
         
         private IEnumerator InvokeDecisionWindowEnter(double delay, Segment segment)
         {
@@ -34,7 +35,7 @@ namespace Ahsan
         private IEnumerator InvokeDecisionWindowExit(double delay)
         {
             yield return new WaitForSecondsRealtime((float)delay);
-            OnDecisionWindowExit?.Invoke();
+            OnDecisionWindowExit?.Invoke(selectedVariant);
         }
         
         private void OnEnable()
@@ -58,8 +59,8 @@ namespace Ahsan
 
         private void ScheduleDecisionWindow(Segment segment, WorldVariant type)
         {
-            StartCoroutine(InvokeDecisionWindowEnter(segment.WorldVariants[type].decisionWindowStart, segment));
-            StartCoroutine(InvokeDecisionWindowExit(segment.WorldVariants[type].decisionWindowEnd));
+            StartCoroutine(InvokeDecisionWindowEnter(segment.WorldVariants[type].decisionWindowStart/1000, segment));
+            StartCoroutine(InvokeDecisionWindowExit(segment.WorldVariants[type].decisionWindowEnd/1000));
         }
 
         

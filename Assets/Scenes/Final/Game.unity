@@ -610,7 +610,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.51370597, g: 0.81455654, b: 0.9811321, a: 0}
+  m_BackGroundColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -893,6 +893,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099296331}
     m_Modifications:
+    - target: {fileID: 421587493837157208, guid: ebbb1d3703a204c8488559e444c76b0f, type: 3}
+      propertyPath: fillColor.b
+      value: 0.81422555
+      objectReference: {fileID: 0}
+    - target: {fileID: 421587493837157208, guid: ebbb1d3703a204c8488559e444c76b0f, type: 3}
+      propertyPath: fillColor.g
+      value: 0.8773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 421587493837157208, guid: ebbb1d3703a204c8488559e444c76b0f, type: 3}
+      propertyPath: fillColor.r
+      value: 0.6083571
+      objectReference: {fileID: 0}
     - target: {fileID: 2198139117847411019, guid: ebbb1d3703a204c8488559e444c76b0f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1070,6 +1082,7 @@ MonoBehaviour:
   spline: {fileID: 0}
   morphSpeed: 0
   _targetSpline: {fileID: 0}
+  showDebugGUI: 0
 --- !u!1001 &7420686726920697238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,10 +1100,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2126287767}
     - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: startAnimators.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: startAnimators.Array.data[0].animator
       value: 
       objectReference: {fileID: 2126287768}
@@ -1102,14 +1111,6 @@ PrefabInstance:
       propertyPath: startAnimators.Array.data[2].animator
       value: 
       objectReference: {fileID: 982357535}
-    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: startAnimators.Array.data[1].triggerName
-      value: slide
-      objectReference: {fileID: 0}
-    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: startAnimators.Array.data[2].triggerName
-      value: fade
-      objectReference: {fileID: 0}
     - target: {fileID: 4606401347987298096, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1150,29 +1151,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5434825500679111544, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5835405471971204089, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: m_Name
       value: GameManagers
       objectReference: {fileID: 0}
-    - target: {fileID: 6492623169036506887, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7157603398473490161, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7367742446097468527, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8086668183818786331, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1194,6 +1179,7 @@ MonoBehaviour:
   spline: {fileID: 0}
   morphSpeed: 0
   _targetSpline: {fileID: 0}
+  showDebugGUI: 0
 --- !u!1 &8036416666256966553 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7002445370779754080, guid: 9ce086b71a1344b5db13bce30c035b08, type: 3}
@@ -1214,6 +1200,7 @@ MonoBehaviour:
   spline: {fileID: 0}
   morphSpeed: 0
   _targetSpline: {fileID: 0}
+  showDebugGUI: 0
 --- !u!114 &8773827855350037208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,6 +1216,7 @@ MonoBehaviour:
   spline: {fileID: 0}
   morphSpeed: 0
   _targetSpline: {fileID: 0}
+  showDebugGUI: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ namespace Ahsan
 #endif
         BezierKnot[] targetSplineKnots;
         BezierKnot[] initialSplineKnots;
-
+        [SerializeField] private bool showDebugGUI = true;
 
         private void Start()
         {
@@ -47,14 +47,17 @@ namespace Ahsan
 
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(10, 10, 100, 100), "Morph"))
+            if (showDebugGUI)
             {
-                MorphTo(_targetSpline);
-            }
+                if (GUI.Button(new Rect(10, 10, 100, 100), "Morph"))
+                {
+                    MorphTo(_targetSpline);
+                }
 
-            if (GUI.Button(new Rect(10, 220, 200, 100), "Morph Back"))
-            {
-                MorphBack();
+                if (GUI.Button(new Rect(10, 220, 200, 100), "Morph Back"))
+                {
+                    MorphBack();
+                }
             }
         }
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
   m_Name: Segment1_Signal
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 0}
-  chart: {fileID: 0}
+  audioFile: {fileID: 8300000, guid: a7af45671077d4cce8474263d8646a00, type: 3}
+  chart: {fileID: 11400000, guid: b3f897927d17647bea6fc5fa3f6f49f7, type: 2}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 0
-  decisionWindowEnd: 0
+  decisionWindowStart: 51500
+  decisionWindowEnd: 59000

@@ -9,13 +9,17 @@ namespace Ahsan
 {
     public class NewConductor : MonoBehaviour
     {
+        [SerializeField] private DecisionMaker decisionMaker;
         [SerializeField] private GameStarter gameStarter;
+        [SerializeField] private SegmentSequencer segmentSequencer;
         [SerializeField] private AudioSource musicSource1;
         [SerializeField] private AudioSource musicSource2;
 
         [HideInInspector] public float songPosition;
         [HideInInspector] public float songPositionInBeats;
 
+        [SerializeField] private bool showDebugGUI = true;
+        
         private double nextPlaybackPosition;
         private double songStartTime;
         private float secPerBeat;
@@ -26,6 +30,10 @@ namespace Ahsan
         {
             gameStarter.OnGameStarted += PlayIntroSegment;
             OnNewSongStarted += ResetTimeParams;
+            decisionMaker.OnDecisionWindowExit += variant =>
+            {
+                PlaySegmentScheduled(segmentSequencer.segments[segmentSequencer.currentSegment], variant);
+            };
         }
 
         private void PlayIntroSegment(Segment segment)
@@ -87,6 +95,11 @@ namespace Ahsan
         {
             yield return new WaitForSecondsRealtime((float)delay);
             OnNewSongStarted?.Invoke(segment, type);
+        }
+
+        private void OnGUI()
+        {
+            GUI.Box(new Rect(0, 0, 500, 250), songPosition.ToString());
         }
     }
 }

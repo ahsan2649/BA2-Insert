@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
+  m_Name: Segment3_Signal
+  m_EditorClassIdentifier: 
+  audioFile: {fileID: 0}
+  chart: {fileID: 0}
+  bpm: 0
+  firstBeatOffset: 0
+  decisionWindowStart: 0
+  decisionWindowEnd: 0

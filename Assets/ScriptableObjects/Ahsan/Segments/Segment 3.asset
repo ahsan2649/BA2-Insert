@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b2314d76e3413ebb8b733ab9b2525d, type: 3}
+  m_Name: Segment 3
+  m_EditorClassIdentifier: 
+  variants:
+  - type: 1
+    pair: {fileID: 11400000, guid: 620a4086c486e4b97aa73a3475b4cfd6, type: 2}
+  - type: 2
+    pair: {fileID: 11400000, guid: b9217dd38b0df4885af9538e08de0d41, type: 2}
+  - type: 3
+    pair: {fileID: 11400000, guid: 3ec8b31b3545747949769a7d1f13cf6f, type: 2}
+  - type: 4
+    pair: {fileID: 11400000, guid: 18c4de7695cf5489da58b05bbdbb7b32, type: 2}
+  outcomeA:
+    type: 2
+    splinePreset: {fileID: 11400000, guid: 7995e649261a1437dbd1935a70250bea, type: 2}
+  outcomeB:
+    type: 4
+    splinePreset: {fileID: 11400000, guid: e67a14dce95174781bb478e60ba6ce38, type: 2}

@@ -15,7 +15,6 @@ namespace Ahsan
 #if DEBUG
         [SerializeField] SplinePreset _targetSpline;
 #endif
-
         BezierKnot[] targetSplineKnots;
         BezierKnot[] initialSplineKnots;
 

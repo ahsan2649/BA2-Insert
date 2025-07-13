@@ -1,31 +1,49 @@
 using UnityEngine;
 using UnityEngine.Splines;
 
-[RequireComponent(typeof(SplineContainer))]
-[RequireComponent(typeof(LineRenderer))]
-public class SplineLineRenderer : MonoBehaviour
+namespace Ahsan
 {
-    [SerializeField] SplineContainer splineContainer;
-    private LineRenderer _lineRenderer;
-    private Spline _spline;
-
-    [SerializeField] private int numPoints;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [RequireComponent(typeof(SplineContainer))]
+    [RequireComponent(typeof(LineRenderer))]
+    public class SplineLineRenderer : MonoBehaviour
     {
-        _spline = splineContainer.Spline;
-        _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.positionCount = numPoints;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        for (int i = 0; i < numPoints; i++)
+        [SerializeField] SplineContainer splineContainer;
+        private LineRenderer lineRenderer;
+        private Spline spline;
+        [SerializeField] private float noiseScale = 1f;
+        [SerializeField] private float noiseOffset;
+        [SerializeField] private float noiseSpeed = 1f;
+        [SerializeField] private float displacement = 0.1f;
+        [SerializeField] private Vector3 noiseDirection = new Vector3(0, 1, 0); // Y-direction by default
+        [SerializeField] private int numPoints;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            var lerpValue = i / (float)(numPoints - 1);
-            var lerpPoint = _spline.EvaluatePosition(lerpValue);
-            _lineRenderer.SetPosition(i, transform.position + (Vector3)lerpPoint);
+            spline = splineContainer.Spline;
+            lineRenderer = GetComponent<LineRenderer>();
+            lineRenderer.positionCount = numPoints;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            for (int i = 0; i < numPoints; i++)
+            {
+                float t = i / (float)(numPoints - 1);
+                Vector3 splinePoint = spline.EvaluatePosition(t);
+
+                // 2D Perlin noise for better temporal coherence
+                float noiseValue = Mathf.PerlinNoise(t * noiseScale + noiseOffset, Time.time * noiseSpeed);
+                float offset = (noiseValue - 0.5f) * 2f * displacement;
+
+                if (i == 0 || i == numPoints - 1)
+                {
+                    offset = 0;
+                }
+                
+                Vector3 displaced = splinePoint + noiseDirection.normalized * offset;
+                lineRenderer.SetPosition(i, transform.TransformPoint(displaced));
+            }
         }
     }
 }

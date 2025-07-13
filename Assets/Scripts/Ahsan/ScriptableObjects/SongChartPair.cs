@@ -11,7 +11,5 @@ namespace Ahsan.ScriptableObjects
         public float firstBeatOffset;
         public float decisionWindowStart;
         public float decisionWindowEnd;
-        public SplinePreset outcomeA;
-        public SplinePreset outcomeB;
     }
 }

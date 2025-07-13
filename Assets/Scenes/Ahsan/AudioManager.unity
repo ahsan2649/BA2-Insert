@@ -167,8 +167,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource1: {fileID: 231228073}
   musicSource2: {fileID: 231228072}
+  chartParser: {fileID: 0}
   Song1: {fileID: 11400000, guid: fc77f1edb919947469b731c2fafee51f, type: 2}
   Song2: {fileID: 11400000, guid: 254a2217407c1471bb9eb49bdd1fadd0, type: 2}
+  songPosition: 0
 --- !u!82 &231228072
 AudioSource:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ AudioSource:
   m_GameObject: {fileID: 231228067}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6150761701120042839, guid: c81eb6ef5c4ca48579463390b59720c6, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -275,7 +277,7 @@ AudioSource:
   m_GameObject: {fileID: 231228067}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6150761701120042839, guid: c81eb6ef5c4ca48579463390b59720c6, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

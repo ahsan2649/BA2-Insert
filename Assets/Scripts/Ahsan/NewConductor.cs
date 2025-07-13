@@ -9,67 +9,51 @@ namespace Ahsan
 {
     public class NewConductor : MonoBehaviour
     {
-        public AudioSource musicSource1;
-        public AudioSource musicSource2;
+        [SerializeField] private GameStarter gameStarter;
+        [SerializeField] private AudioSource musicSource1;
+        [SerializeField] private AudioSource musicSource2;
+
+        [HideInInspector] public float songPosition;
+        [HideInInspector] public float songPositionInBeats;
+
         private double nextPlaybackPosition;
-
-        public event Action<SongChartPair> OnNewSongStarted;
-        
-        public NewChartParser chartParser;
-        
-        public SongChartPair Song1;
-        public SongChartPair Song2;
-
         private double songStartTime;
         private float secPerBeat;
-        public float songPosition;
-        private float songPositionInBeats;
         private float firstBeatOffset;
+        public event Action<Segment, WorldVariant> OnNewSongStarted;
 
         private void OnEnable()
         {
+            gameStarter.OnGameStarted += PlayIntroSegment;
             OnNewSongStarted += ResetTimeParams;
-            OnNewSongStarted += chartParser.SetCurrentChart;
+        }
+
+        private void PlayIntroSegment(Segment segment)
+        {
+            PlaySegmentScheduled(segment, WorldVariant.Intro);
         }
 
         private void OnDisable()
         {
+            gameStarter.OnGameStarted -= PlayIntroSegment;
             OnNewSongStarted -= ResetTimeParams;
-            OnNewSongStarted -= chartParser.SetCurrentChart;
         }
 
-        public void ResetTimeParams(SongChartPair songChartPair)
+        public void ResetTimeParams(Segment segment, WorldVariant type)
         {
-            secPerBeat = 60f / songChartPair.bpm;
-            firstBeatOffset = songChartPair.firstBeatOffset;
+            secPerBeat = 60f / segment.WorldVariants[type].bpm;
+            firstBeatOffset = segment.WorldVariants[type].firstBeatOffset;
             songStartTime = (float)AudioSettings.dspTime;
         }
-
-		void Start()
-		{
-			ResetTimeParams(Song1);
-			chartParser.SetCurrentChart(Song1);
-		}
 
 		// Update is called once per frame
 		void Update()
         {
             songPosition = (float)(AudioSettings.dspTime - songStartTime - firstBeatOffset) * 1000; //in milliseconds
             songPositionInBeats = (songPosition / 1000f) / secPerBeat;
-
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            { 
-                PlaySongScheduled(Song1);
-            }
-            
-            if (Keyboard.current.enterKey.wasPressedThisFrame)
-            {
-                PlaySongScheduled(Song2);
-            }
-            
         }
 
-        public void PlaySongScheduled(SongChartPair songChartPair)
+        public void PlaySegmentScheduled(Segment segment, WorldVariant type)
         {
             AudioSource targetSource = !musicSource1.isPlaying ? musicSource1 : !musicSource2.isPlaying ? musicSource2 : null;
 
@@ -82,20 +66,20 @@ namespace Ahsan
             {
                 nextPlaybackPosition = AudioSettings.dspTime;
             }
-            
-            targetSource.clip = songChartPair.audioFile;
-            targetSource.PlayScheduled(nextPlaybackPosition);
-            StartCoroutine(InvokeEventAfterDelay(nextPlaybackPosition - AudioSettings.dspTime, songChartPair));
-            
-            nextPlaybackPosition += songChartPair.audioFile.length;
 
-			chartParser.SetCurrentChart(songChartPair);
+            var selectedChart = segment.WorldVariants[type];
+            
+            targetSource.clip = selectedChart.audioFile;
+            targetSource.PlayScheduled(nextPlaybackPosition);
+            StartCoroutine(InvokeEventAfterDelay(nextPlaybackPosition - AudioSettings.dspTime, segment, type));
+            
+            nextPlaybackPosition += selectedChart.audioFile.length;
         }
         
-        private IEnumerator InvokeEventAfterDelay(double delay, SongChartPair songChartPair)
+        private IEnumerator InvokeEventAfterDelay(double delay, Segment segment, WorldVariant type)
         {
             yield return new WaitForSecondsRealtime((float)delay);
-            OnNewSongStarted?.Invoke(songChartPair);
+            OnNewSongStarted?.Invoke(segment, type);
         }
     }
 }

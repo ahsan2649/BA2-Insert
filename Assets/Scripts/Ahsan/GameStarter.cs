@@ -1,61 +1,72 @@
 using System;
-using Ahsan;
+using System.Collections.Generic;
 using Ahsan.ScriptableObjects;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class GameStarter : MonoBehaviour
+namespace Ahsan
 {
-    private static readonly int Fade = Animator.StringToHash("fade");
-    public Slider slider;
-    public CanvasGroup textGroup;
-    private bool filled;
-    public float sliderFillSpeed = 0.5f;
-
-    [Header("Event-dependent GameObjects")]
-    public Animator sliderAnimator;
-
-    public NewConductor conductor;
-    public SongChartPair startingSong;
-    public Action OnGameStarted;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    [Serializable]
+    public class AnimatorTriggerPair
     {
-        slider.onValueChanged.AddListener(CallGameStart);
-        OnGameStarted += StartGame;
+        public String triggerName;
+        public Animator animator;
     }
-
-    private void StartGame()
+    public class GameStarter : MonoBehaviour
     {
-        OnGameStarted -= StartGame;
-        sliderAnimator.SetTrigger(Fade);
-        conductor.PlaySongScheduled(startingSong);
-    }
+        [Header("Starting UI Controls")]
+        public Slider slider;
+        public CanvasGroup textGroup;
+        public float sliderFillSpeed = 0.5f;
 
-    public void CallGameStart(float value)
-    {
-        if (value >= 1 && !filled)
+        [Header("Event-dependent GameObjects")]
+        public List<AnimatorTriggerPair> startAnimators;
+        public Segment introSegment;
+        
+        public Action<Segment> OnGameStarted;
+        
+        private bool filled;
+        
+        void OnEnable()
         {
-            filled = true;
-            OnGameStarted?.Invoke();
+            slider.onValueChanged.AddListener(CallGameStart);
+            OnGameStarted += StartGame;
         }
-    }
-    
 
-    // Update is called once per frame
-    void Update()
-    {
-        bool keysPressed = Keyboard.current.fKey.isPressed && Keyboard.current.jKey.isPressed;
+        void OnDisable()
+        {
+            slider.onValueChanged.RemoveListener(CallGameStart);
+            OnGameStarted -= StartGame;
+        }
+        
+        void Update()
+        {
+            bool keysPressed = Keyboard.current.fKey.isPressed && Keyboard.current.jKey.isPressed;
 
-        if (keysPressed)
-            slider.value += Time.deltaTime * sliderFillSpeed;
-        else if (!filled)
-            slider.value -= Time.deltaTime;
+            if (keysPressed)
+                slider.value += Time.deltaTime * sliderFillSpeed;
+            else if (!filled)
+                slider.value -= Time.deltaTime;
 
-        textGroup.alpha = 1 - slider.value;
+            textGroup.alpha = 1 - slider.value;
+        }
+        
+        public void CallGameStart(float value)
+        {
+            if (value >= 1 && !filled)
+            {
+                filled = true;
+                OnGameStarted?.Invoke(introSegment);
+            }
+        }
+        
+        private void StartGame(Segment segment)
+        {
+            foreach (var animatorTriggerPair in startAnimators)
+            {
+                animatorTriggerPair.animator.SetTrigger(animatorTriggerPair.triggerName);
+            }
+        }
     }
 }

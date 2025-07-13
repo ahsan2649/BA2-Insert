@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using Ahsan.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ahsan
 {
     public class DecisionMaker : MonoBehaviour
     {
         public List<Lane> lanes;
-
-        public NewConductor Conductor;
+        public NewConductor conductor;
 
 		public int hitCombo;
 		public int missCombo;
@@ -21,14 +21,14 @@ namespace Ahsan
 		public int greatHits;
 		public int misses;
     
-        public event Action OnDecisionWindowEnter;
+        public event Action<Segment> OnDecisionWindowEnter;
         public event Action OnDecisionWindowExit;
 
         
-        private IEnumerator InvokeDecisionWindowEnter(double delay)
+        private IEnumerator InvokeDecisionWindowEnter(double delay, Segment segment)
         {
             yield return new WaitForSecondsRealtime((float)delay);
-            OnDecisionWindowEnter?.Invoke();
+            OnDecisionWindowEnter?.Invoke(segment);
         }
         
         private IEnumerator InvokeDecisionWindowExit(double delay)
@@ -44,23 +44,25 @@ namespace Ahsan
                 lane.OnNoteDestroyed += TallyNote;
             }
 
-            Conductor.OnNewSongStarted += ScheduleDecisionWindow;
+            conductor.OnNewSongStarted += ScheduleDecisionWindow;
         }
-
-        private void ScheduleDecisionWindow(SongChartPair pair)
-        {
-            StartCoroutine(InvokeDecisionWindowEnter(pair.decisionWindowStart));
-            StartCoroutine(InvokeDecisionWindowExit(pair.decisionWindowEnd));
-        }
-
+        
         private void OnDisable()
         {
-            foreach (Lane lane in lanes)
-            {
-                lane.OnNoteDestroyed -= TallyNote;
-            }
-            Conductor.OnNewSongStarted -= ScheduleDecisionWindow;
+	        foreach (Lane lane in lanes)
+	        {
+		        lane.OnNoteDestroyed -= TallyNote;
+	        }
+	        conductor.OnNewSongStarted -= ScheduleDecisionWindow;
         }
+
+        private void ScheduleDecisionWindow(Segment segment, WorldVariant type)
+        {
+            StartCoroutine(InvokeDecisionWindowEnter(segment.WorldVariants[type].decisionWindowStart, segment));
+            StartCoroutine(InvokeDecisionWindowExit(segment.WorldVariants[type].decisionWindowEnd));
+        }
+
+        
 
 		private void TallyNote(float noteHitTime)
 		{
@@ -74,7 +76,7 @@ namespace Ahsan
 
 			// When timing windows overlap with notes close to eachother it gets a bit fucky but i just wont design charts like that :)
 
-			float hitDifference = math.floor(noteHitTime - Conductor.songPosition) - 255;
+			float hitDifference = math.floor(noteHitTime - conductor.songPosition) - 255;
 			// 500ms range
 			print(hitDifference);
 			if (hitDifference <= -250)

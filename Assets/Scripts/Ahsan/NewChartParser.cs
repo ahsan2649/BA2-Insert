@@ -56,9 +56,19 @@ namespace Ahsan
 		
 		int noteIndex = 0;
 
-		public void SetCurrentChart(SongChartPair songChartPair)
+		private void OnEnable()
 		{
-			currentChart = songChartPair.chart;
+			Conductor.OnNewSongStarted += SetCurrentChart;
+		}
+
+		private void OnDisable()
+		{
+			Conductor.OnNewSongStarted -= SetCurrentChart;
+		}
+
+		public void SetCurrentChart(Segment segment, WorldVariant type)
+		{
+			currentChart = segment.WorldVariants[type].chart;
 			noteIndex = 0;
 		}
 

@@ -27,6 +27,10 @@ public class World4Controller : MonoBehaviour
     [ColorUsage(true, true)]
     public Color crackColor = Color.white;
 
+    [ColorUsage(true, true)]
+    [Tooltip("HDR color for crack texture background - will be overridden by WorldController")]
+    public Color crackBackgroundColor = Color.black;
+
     [Range(0f, 5f)]
     public float threshold = 0f;
 
@@ -57,12 +61,18 @@ public class World4Controller : MonoBehaviour
     void Awake()
     {
         if (backgroundRenderer == null) return;
-        // use .material so we don’t clobber the shared asset
+        // use .material so we don't clobber the shared asset
         _instancedMat = backgroundRenderer.material;
 
         // apply baseline crack‐texture UVs
         _instancedMat.SetTextureScale("_CrackTexture", crackTextureTiling);
         _instancedMat.SetTextureOffset("_CrackTexture", crackTextureOffset);
+
+        // set initial crack background color
+        if (_instancedMat.HasProperty("_CrackColor"))
+        {
+            _instancedMat.SetColor("_CrackColor", crackBackgroundColor);
+        }
     }
 
 #if UNITY_EDITOR
@@ -82,6 +92,10 @@ public class World4Controller : MonoBehaviour
         if (crackTexture != null) shared.SetTexture("_CrackTexture", crackTexture);
         shared.SetFloat("_CrackStrength", crackStrength);
         shared.SetColor("_CrackColor", crackColor);
+        if (shared.HasProperty("_CrackColor"))
+        {
+            shared.SetColor("_CrackBackgroundColor", crackBackgroundColor);
+        }
         shared.SetFloat("_Threshold", threshold);
 
         // crack‐texture UVs
@@ -135,6 +149,12 @@ public class World4Controller : MonoBehaviour
         _instancedMat.SetColor("_CrackColor", crackColor * collisionCrackColorIntensity);
         _instancedMat.SetFloat("_Threshold", threshold);
 
+        // preserve current crack background color during hit effect
+        if (_instancedMat.HasProperty("_CrackColor"))
+        {
+            _instancedMat.SetColor("_CrackColor", crackBackgroundColor);
+        }
+
         // schedule reset
         StopCoroutine(nameof(ResetCrackEffect));
         StartCoroutine(ResetCrackEffect());
@@ -154,6 +174,12 @@ public class World4Controller : MonoBehaviour
         _instancedMat.SetColor("_CrackColor", crackColor);
         _instancedMat.SetTextureScale("_CrackTexture", crackTextureTiling);
         _instancedMat.SetTextureOffset("_CrackTexture", crackTextureOffset);
+
+        // restore crack background color
+        if (_instancedMat.HasProperty("_CrackColor"))
+        {
+            _instancedMat.SetColor("_CrackColor", crackBackgroundColor);
+        }
     }
 
     private void SpawnBubble()

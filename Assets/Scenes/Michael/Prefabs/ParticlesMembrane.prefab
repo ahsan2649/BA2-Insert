@@ -126,8 +126,8 @@ MonoBehaviour:
   growDuration: 2
   floatAmplitude: 3
   floatFrequency: 3
-  lifeTimeMin: 5
-  lifeTimeMax: 10
+  lifeTimeMin: 3
+  lifeTimeMax: 7
   minScale: 10
   maxScale: 20
 --- !u!210 &-8100188451309904954

@@ -3496,7 +3496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &810014501
 Transform:
   m_ObjectHideFlags: 0
@@ -5622,7 +5622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1223526068
 Transform:
   m_ObjectHideFlags: 0
@@ -6326,8 +6326,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1279546293}
-  - component: {fileID: 1279546292}
   - component: {fileID: 1279546291}
+  - component: {fileID: 1279546294}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -6432,25 +6432,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1279546292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279546290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ceeacfcdc007242b25ce26a9605e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  songBpm: 60
-  secPerBeat: 0
-  songPosition: 0
-  songPositionInBeats: 0
-  dspSongTime: 0
-  musicSource: {fileID: 1279546291}
-  firstBeatOffset: 1.5
 --- !u!4 &1279546293
 Transform:
   m_ObjectHideFlags: 0
@@ -6466,6 +6447,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279546294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279546290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6df99e691354656840a3c1851af488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource1: {fileID: 1279546291}
+  musicSource2: {fileID: 1279546291}
+  chartParser: {fileID: 2016433391}
+  Song1: {fileID: 11400000, guid: fc77f1edb919947469b731c2fafee51f, type: 2}
+  Song2: {fileID: 11400000, guid: 254a2217407c1471bb9eb49bdd1fadd0, type: 2}
+  songPosition: 0
 --- !u!1 &1320693093
 GameObject:
   m_ObjectHideFlags: 0
@@ -10218,7 +10217,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016433390}
-  - component: {fileID: 2016433389}
+  - component: {fileID: 2016433391}
+  - component: {fileID: 2016433392}
   m_Layer: 0
   m_Name: NoteManager
   m_TagString: Untagged
@@ -10226,23 +10226,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2016433389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016433388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0447045a933ff47c49360fa4bd2ba061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Conductor: {fileID: 1279546290}
-  Lanes: {fileID: 165305937}
-  chartFile: {fileID: 4900000, guid: b6d66cf6349a44d558affb49c32681ed, type: 3}
-  CurrentChart:
-    notes: []
 --- !u!4 &2016433390
 Transform:
   m_ObjectHideFlags: 0
@@ -10258,6 +10241,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2016433391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016433388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff45316b6a7424ebd0f53b228b9614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Conductor: {fileID: 1279546294}
+  Lanes:
+  - {fileID: 1018189346}
+  - {fileID: 327794779}
+  - {fileID: 1271032728}
+  - {fileID: 1605579}
+  - {fileID: 1320693095}
+  - {fileID: 1421063932}
+  - {fileID: 1866539487}
+  - {fileID: 1252314633}
+  - {fileID: 1878598444}
+  - {fileID: 269813754}
+  - {fileID: 175503034}
+--- !u!114 &2016433392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016433388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c7e148c08bd4505ae253e578896ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lanes:
+  - {fileID: 1018189346}
+  - {fileID: 327794779}
+  - {fileID: 1271032728}
+  - {fileID: 1605579}
+  - {fileID: 1320693095}
+  - {fileID: 1421063932}
+  - {fileID: 1866539487}
+  - {fileID: 1252314633}
+  - {fileID: 1878598444}
+  - {fileID: 269813754}
+  - {fileID: 175503034}
+  Conductor: {fileID: 1279546294}
+  hitCombo: 0
+  missCombo: 0
+  perfectHits: 0
+  goodHits: 0
+  greatHits: 0
+  misses: 0
 --- !u!1 &2147452337
 GameObject:
   m_ObjectHideFlags: 0
@@ -10341,6 +10380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightMembrane
       objectReference: {fileID: 0}
+    - target: {fileID: 1666405493369058039, guid: d32bc698e9426b541bec765c82a9ff17, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10382,6 +10425,10 @@ PrefabInstance:
     - target: {fileID: 5956547278663127274, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
       propertyPath: m_Name
       value: LeftMembrane
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956547278663127274, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5956547278663486666, guid: 12ccf602c92bec3429e63c97472d3ef5, type: 3}
       propertyPath: m_LocalPosition.x

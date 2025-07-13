@@ -58,16 +58,16 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
-    - _Clip: 1
+    - _Clip: 0.95
     - _Cull: 2
     - _DstBlend: 0
     - _Grow: 1
-    - _Metallic: 1.96
+    - _Metallic: 0.61
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 1
-    - _Smoothness: 0.04
+    - _Smoothness: 0.16
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1

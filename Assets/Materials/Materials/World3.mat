@@ -35,8 +35,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ElectricitySize: 0.03
-    - _Metallic: 0.47
-    - _Smooth: 0.05
+    - _Metallic: 0.43
+    - _Smooth: 0.15
     - _Texture2Transperancy: 0.07
     m_Colors:
     - _CircuitColor: {r: 4.663669, g: 47.93726, b: 0, a: 1}

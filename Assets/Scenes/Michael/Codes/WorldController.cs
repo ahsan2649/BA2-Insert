@@ -46,6 +46,15 @@ public class WorldController : MonoBehaviour
     [Range(0f, 12f)] public float circuitDimFactor = 0.5f;
     [Range(0f, 20f)] public float flowBrightFactor = 1.5f;
 
+    [Header("World4 Crack Background")]
+    [Tooltip("Reference to World4Controller to sync crack background color")]
+    public World4Controller world4Controller;
+    [Tooltip("Shader property name for crack texture background color")]
+    public string crackBackgroundProperty = "_CrackBackgroundColor";
+    [Tooltip("Fixed HDR intensity for crack background (independent of other colors)")]
+    [Range(1f, 5f)]
+    public float crackBackgroundIntensity = 2f;
+
     // internals
     GameObject[] worlds;
     int currentIndex = 0;
@@ -152,6 +161,23 @@ public class WorldController : MonoBehaviour
                     mats[circuitMaterialIndex].SetColor(flowColorProperty, brightFlow);
                     cr.materials = mats;
                 }
+            }
+        }
+
+        // 6) if this is World4 (idx == 3), update crack background to match membrane color
+        if (idx == 3 && world4Controller != null && world4Controller.backgroundRenderer != null)
+        {
+            var material = world4Controller.backgroundRenderer.material;
+            if (material.HasProperty(crackBackgroundProperty))
+            {
+                // Create bright, saturated crack background with fixed HDR intensity
+                // Position closer to top-left (higher saturation, higher brightness)
+                Color brightCrackBackground = Color.HSVToRGB(h, 0.9f, crackBackgroundIntensity, true);
+
+                material.SetColor(crackBackgroundProperty, brightCrackBackground);
+
+                // Update the World4Controller's crackBackgroundColor field so it shows in inspector
+                world4Controller.crackBackgroundColor = brightCrackBackground;
             }
         }
     }

@@ -51,7 +51,7 @@ Material:
     - _RippleStrength: 0
     - _Threshhold: 0
     m_Colors:
-    - _CrackColor: {r: 0.123268016, g: 0.6714049, b: 0.7509433, a: 1}
+    - _CrackColor: {r: 0, g: 2.7255158, b: 3.102895, a: 1}
     - _RippleCenter: {r: 0, g: 1, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

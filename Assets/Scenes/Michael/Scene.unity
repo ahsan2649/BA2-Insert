@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233439890}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc5533d654bb19f41bbb5d8545115e9c, type: 3}
   m_Name: 
@@ -1165,6 +1165,9 @@ MonoBehaviour:
   flowColorProperty: _FlowColor
   circuitDimFactor: 7
   flowBrightFactor: 8
+  world4Controller: {fileID: 810014502}
+  crackBackgroundProperty: _CrackColor
+  crackBackgroundIntensity: 3
 --- !u!1 &233577918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,6 +3541,7 @@ MonoBehaviour:
   crackTexture: {fileID: 2800000, guid: e3ac187bea652b741bad22309e5f4ac3, type: 3}
   crackStrength: 2
   crackColor: {r: 3.6820207, g: 1.0064996, b: 6.0075464, a: 1}
+  crackBackgroundColor: {r: 1.6883395, g: 6.6282983, b: 6.383848, a: 1}
   threshold: 0.488
   liveEditInEditor: 0
   crackTextureTiling: {x: 1, y: 1}
@@ -6028,7 +6032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 1271032732}
-  notePrefab: {fileID: 6706865500459751174, guid: 41c5570b5a56360458c38858257c9195, type: 3}
+  notePrefab: {fileID: 1121909358101066152, guid: 41c5570b5a56360458c38858257c9195, type: 3}
   key:
     m_Name: Key
     m_Type: 0

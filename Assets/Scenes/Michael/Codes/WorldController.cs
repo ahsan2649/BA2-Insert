@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
+using Ahsan.ScriptableObjects; // Add this for WorldVariant enum
+using Ahsan; // Add this for NewConductor
 
 public class WorldController : MonoBehaviour
 {
     // Singleton reference for easy access from spawned objects
     public static WorldController Instance { get; private set; }
+
+    [Header("Conductor Integration")]
+    [SerializeField] private Ahsan.NewConductor newConductor;
+
     [Header("World Setup")]
     public Transform worldsParent;
 
@@ -105,11 +111,77 @@ public class WorldController : MonoBehaviour
         defaultScan = glitchMaterial.GetFloat("_ScanLinesStrength");
         SetGlitch(defaultNoise, defaultStrength, defaultScan);
 
-        // apply initial appearance
-        ApplyAppearance(0);
+        // apply initial appearance (assuming Intro is the first world)
+        ApplyAppearance(WorldVariant.Intro);
 
-        // start automatic switching
+        // start automatic switching (keeping this for fallback/testing)
         StartCoroutine(AutoSwitch());
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe to the conductor's event
+        if (newConductor != null)
+        {
+            newConductor.OnNewSongStarted += ApplyAppearanceOnSongStart;
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from the conductor's event
+        if (newConductor != null)
+        {
+            newConductor.OnNewSongStarted -= ApplyAppearanceOnSongStart;
+        }
+    }
+
+    // Event handler that matches the conductor's event signature
+    private void ApplyAppearanceOnSongStart(Segment segment, WorldVariant worldVariant)
+    {
+        ApplyAppearance(worldVariant);
+
+        // Activate the corresponding world GameObject
+        ActivateWorld(worldVariant);
+
+        // Trigger glitch effect
+        StartCoroutine(GlitchEffect());
+    }
+
+    private void ActivateWorld(WorldVariant worldVariant)
+    {
+        // Deactivate current world
+        if (currentIndex < worlds.Length)
+        {
+            worlds[currentIndex].SetActive(false);
+        }
+
+        // Convert WorldVariant to index and activate new world
+        currentIndex = WorldVariantToIndex(worldVariant);
+        if (currentIndex < worlds.Length)
+        {
+            worlds[currentIndex].SetActive(true);
+        }
+    }
+
+    private int WorldVariantToIndex(WorldVariant worldVariant)
+    {
+        return worldVariant switch
+        {
+            WorldVariant.Intro => 0,
+            WorldVariant.Anthropocene => 1,
+            WorldVariant.PostHumanBiome => 2,
+            WorldVariant.Signal => 3,
+            WorldVariant.Chaos => 4,
+            _ => 0
+        };
+    }
+
+    private IEnumerator GlitchEffect()
+    {
+        SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
+        yield return new WaitForSeconds(glitchDuration);
+        SetGlitch(defaultNoise, defaultStrength, defaultScan);
     }
 
     IEnumerator AutoSwitch()
@@ -123,8 +195,9 @@ public class WorldController : MonoBehaviour
             currentIndex = (currentIndex + 1) % worlds.Length;
             worlds[currentIndex].SetActive(true);
 
-            // update colors/textures
-            ApplyAppearance(currentIndex);
+            // Convert index back to WorldVariant for the refactored method
+            WorldVariant variant = IndexToWorldVariant(currentIndex);
+            ApplyAppearance(variant);
 
             // glitch flash
             SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
@@ -133,8 +206,24 @@ public class WorldController : MonoBehaviour
         }
     }
 
-    void ApplyAppearance(int idx)
+    private WorldVariant IndexToWorldVariant(int index)
     {
+        return index switch
+        {
+            0 => WorldVariant.Intro,
+            1 => WorldVariant.Anthropocene,
+            2 => WorldVariant.PostHumanBiome,
+            3 => WorldVariant.Signal,
+            4 => WorldVariant.Chaos,
+            _ => WorldVariant.Intro
+        };
+    }
+
+    void ApplyAppearance(WorldVariant worldVariant)
+    {
+        // Convert WorldVariant to index for array access
+        int idx = WorldVariantToIndex(worldVariant);
+
         // 1) pick a base HDR color for lanes
         Color laneHDR = Color.HSVToRGB(
             Random.value,
@@ -175,8 +264,8 @@ public class WorldController : MonoBehaviour
                 mat.SetColor(prop, laneHDR);
         }
 
-        // 5) if this is World3 (idx == 2), tint the circuit & flow as before
-        if (idx == 2 && circuitRenderers != null)
+        // 5) if this is Signal (previously World3), tint the circuit & flow as before
+        if (worldVariant == WorldVariant.Signal && circuitRenderers != null)
         {
             Color darkCircuit = Color.HSVToRGB(h, s, v * circuitDimFactor, true);
             Color brightFlow = Color.HSVToRGB(h, s, v * flowBrightFactor, true);
@@ -193,8 +282,8 @@ public class WorldController : MonoBehaviour
             }
         }
 
-        // 6) if this is World4 (idx == 3), update crack background to match membrane color
-        if (idx == 3 && world4Controller != null && world4Controller.backgroundRenderer != null)
+        // 6) if this is Chaos (previously World4), update crack background to match membrane color
+        if (worldVariant == WorldVariant.Chaos && world4Controller != null && world4Controller.backgroundRenderer != null)
         {
             var material = world4Controller.backgroundRenderer.material;
             if (material.HasProperty(crackBackgroundProperty))
@@ -262,5 +351,12 @@ public class WorldController : MonoBehaviour
     public void UpdateOrbColors()
     {
         ApplyOrbColors();
+    }
+
+    // Public method to manually apply appearance with WorldVariant (useful for testing)
+    public void ManualApplyAppearance(WorldVariant worldVariant)
+    {
+        ApplyAppearance(worldVariant);
+        ActivateWorld(worldVariant);
     }
 }

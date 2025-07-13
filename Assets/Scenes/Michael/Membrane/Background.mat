@@ -52,7 +52,7 @@ Material:
     - _Threshhold: 0
     m_Colors:
     - _CrackColor: {r: 0, g: 2.7255158, b: 3.102895, a: 1}
-    - _RippleCenter: {r: 0, g: 1, b: 0, a: 0}
+    - _RippleCenter: {r: 0, g: 10, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

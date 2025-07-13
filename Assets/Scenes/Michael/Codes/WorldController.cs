@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class WorldController : MonoBehaviour
 {
+    // Singleton reference for easy access from spawned objects
+    public static WorldController Instance { get; private set; }
     [Header("World Setup")]
     public Transform worldsParent;
 
@@ -50,10 +53,27 @@ public class WorldController : MonoBehaviour
     [Tooltip("Reference to World4Controller to sync crack background color")]
     public World4Controller world4Controller;
     [Tooltip("Shader property name for crack texture background color")]
-    public string crackBackgroundProperty = "_CrackBackgroundColor";
+    public string crackBackgroundProperty = "_CrackColor";
     [Tooltip("Fixed HDR intensity for crack background (independent of other colors)")]
     [Range(1f, 5f)]
     public float crackBackgroundIntensity = 2f;
+
+    [Header("Particles Membrane Appearance")]
+    [Tooltip("The Bubble material used by ParticlesMembrane objects")]
+    public Material bubbleMaterial;
+    [Tooltip("Shader property name for Fresnel color")]
+    public string fresnelColorProperty = "_FresnelColor";
+    [Tooltip("Fixed HDR intensity for particles membrane fresnel color")]
+    [Range(1f, 5f)]
+    public float particlesMembraneIntensity = 3f;
+
+    [Header("Orb Visual Effect")]
+    [Tooltip("The Orb Visual Effect to sync colors with")]
+    public VisualEffect orbVisualEffect;
+    [Tooltip("VFX property names for colors - add all color properties you want to sync")]
+    public string[] orbColorProperties = new[] { "BrightFlareColor", "DarkFlareGradient", "ColorParticle", "FrontColor", "BackColor" };
+    [Tooltip("Intensity multipliers for each orb color property (same order as orbColorProperties)")]
+    public float[] orbColorIntensities = new[] { 1.5f, 0.8f, 1.0f, 1.3f, 0.6f };
 
     // internals
     GameObject[] worlds;
@@ -62,8 +82,14 @@ public class WorldController : MonoBehaviour
             defaultStrength,
             defaultScan;
 
+    // Store current lane color for dynamically spawned particles
+    private Color currentLaneColor = Color.white;
+
     void Start()
     {
+        // Set singleton instance
+        Instance = this;
+
         // gather worlds and activate only the first
         int n = worldsParent.childCount;
         worlds = new GameObject[n];
@@ -116,6 +142,9 @@ public class WorldController : MonoBehaviour
             Random.Range(1f, 5f),
             true
         );
+
+        // Store current lane color for dynamically spawned particles
+        currentLaneColor = laneHDR;
 
         // 2) derive a slightly darker HDR for membranes
         Color.RGBToHSV(laneHDR, out float h, out float s, out float v);
@@ -180,6 +209,34 @@ public class WorldController : MonoBehaviour
                 world4Controller.crackBackgroundColor = brightCrackBackground;
             }
         }
+
+        // 7) Update particles membrane fresnel color to match current lane color
+        if (bubbleMaterial != null && bubbleMaterial.HasProperty(fresnelColorProperty))
+        {
+            Color fresnelColor = currentLaneColor * particlesMembraneIntensity;
+            bubbleMaterial.SetColor(fresnelColorProperty, fresnelColor);
+        }
+
+        // 8) Update Orb Visual Effect colors to match current lane color
+        ApplyOrbColors();
+    }
+
+    void ApplyOrbColors()
+    {
+        if (orbVisualEffect == null || orbColorProperties == null) return;
+
+        for (int i = 0; i < orbColorProperties.Length; i++)
+        {
+            if (orbVisualEffect.HasVector4(orbColorProperties[i]))
+            {
+                // Get intensity multiplier for this property (default to 1.0 if not enough intensities specified)
+                float intensity = i < orbColorIntensities.Length ? orbColorIntensities[i] : 1.0f;
+
+                // Apply the current lane color with the specified intensity
+                Color orbColor = currentLaneColor * intensity;
+                orbVisualEffect.SetVector4(orbColorProperties[i], orbColor);
+            }
+        }
     }
 
     void SetGlitch(float noise, float str, float scan)
@@ -187,5 +244,23 @@ public class WorldController : MonoBehaviour
         glitchMaterial.SetFloat("_NoiseAmount", noise);
         glitchMaterial.SetFloat("_GlitchStrength", str);
         glitchMaterial.SetFloat("_ScanLinesStrength", scan);
+    }
+
+    // Public method to apply current lane color to newly spawned ParticlesMembrane objects
+    public void ApplyCurrentColorToParticle(GameObject particleObject)
+    {
+        // Update the shared Bubble material's Fresnel color with current lane color
+        if (bubbleMaterial != null && bubbleMaterial.HasProperty(fresnelColorProperty))
+        {
+            // Apply the current lane color with the specified HDR intensity for particles membrane
+            Color fresnelColor = currentLaneColor * particlesMembraneIntensity;
+            bubbleMaterial.SetColor(fresnelColorProperty, fresnelColor);
+        }
+    }
+
+    // Public method to manually update orb colors (useful for testing or external calls)
+    public void UpdateOrbColors()
+    {
+        ApplyOrbColors();
     }
 }

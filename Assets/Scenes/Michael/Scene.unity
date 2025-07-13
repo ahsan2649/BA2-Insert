@@ -1168,6 +1168,22 @@ MonoBehaviour:
   world4Controller: {fileID: 810014502}
   crackBackgroundProperty: _CrackColor
   crackBackgroundIntensity: 3
+  bubbleMaterial: {fileID: 2100000, guid: 003e89e95ace52649a8bcb90fec1a85d, type: 2}
+  fresnelColorProperty: _FresnelColor
+  particlesMembraneIntensity: 3
+  orbVisualEffect: {fileID: 7708317209963596311, guid: 41c5570b5a56360458c38858257c9195, type: 3}
+  orbColorProperties:
+  - BrightFlareColor
+  - DarkFlareGradient
+  - ColorParticle
+  - FrontColor
+  - BackColor
+  orbColorIntensities:
+  - 1.5
+  - 0.8
+  - 1
+  - 1
+  - 0.5
 --- !u!1 &233577918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,7 +3063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 711664075}
-  notePrefab: {fileID: 6706865500459751174, guid: 41c5570b5a56360458c38858257c9195, type: 3}
+  notePrefab: {fileID: 1121909358101066152, guid: 41c5570b5a56360458c38858257c9195, type: 3}
   key:
     m_Name: Key
     m_Type: 0
@@ -3499,7 +3515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &810014501
 Transform:
   m_ObjectHideFlags: 0
@@ -5626,7 +5642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1223526068
 Transform:
   m_ObjectHideFlags: 0

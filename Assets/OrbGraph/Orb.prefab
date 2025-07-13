@@ -90,16 +90,16 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 1, y: 0.6444799, z: 0.19806935, w: 1}
+      - m_Value: {x: 1.7894077, y: 0.08069031, z: 0, w: 1}
         m_Name: FrontColor
         m_Overridden: 1
-      - m_Value: {x: 0.69387203, y: 0.14995982, z: 0.1559265, w: 1}
+      - m_Value: {x: 0.89470387, y: 0.040345155, z: 0, w: 0.5}
         m_Name: BackColor
         m_Overridden: 1
       - m_Value: {x: 0, y: 0.07846314, z: 0.7490196, w: 1}
         m_Name: DarkFlareColor
         m_Overridden: 1
-      - m_Value: {x: 0.9019608, y: 0.7088655, z: 0.39215687, w: 1}
+      - m_Value: {x: 1.7894077, y: 0.08069031, z: 0, w: 1}
         m_Name: ColorParticle
         m_Overridden: 1
     m_Uint:
@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineAnimate: {fileID: 651769352236161573}
+  hitTime: 0
 --- !u!210 &3903573125051383999
 SortingGroup:
   m_ObjectHideFlags: 0

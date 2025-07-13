@@ -37,10 +37,33 @@ public class SphereMover : MonoBehaviour
 
         // 2) always show your explosion & ripple/crack
         if (explosionPrefab != null)
-            Instantiate(explosionPrefab, col.contacts[0].point, Quaternion.identity);
+        {
+            GameObject explosion = Instantiate(explosionPrefab, col.contacts[0].point, Quaternion.identity);
+
+            // Apply current lane color to any ParticlesMembrane components in the explosion
+            ApplyColorToParticlesMembrane(explosion);
+        }
 
         _world4Controller?.TriggerHitEffect(col.contacts[0].point);
-
         Destroy(gameObject);
+    }
+
+    private void ApplyColorToParticlesMembrane(GameObject explosionObject)
+    {
+        if (WorldController.Instance == null) return;
+
+        // Apply color to the explosion object itself
+        WorldController.Instance.ApplyCurrentColorToParticle(explosionObject);
+
+        // Apply color to all ParticlesMembrane objects in children
+        Transform[] allChildren = explosionObject.GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            if (child.name.Contains("ParticlesMembrane") ||
+                child.gameObject.name.Contains("ParticlesMembrane"))
+            {
+                WorldController.Instance.ApplyCurrentColorToParticle(child.gameObject);
+            }
+        }
     }
 }

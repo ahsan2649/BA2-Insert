@@ -30,6 +30,13 @@ namespace Ahsan
 
         private void PlayIntroSegment(Segment segment)
         {
+            StartCoroutine(DelayedStart(segment, 2));
+        }
+
+        private IEnumerator DelayedStart(Segment segment, float delay)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+            Debug.Log(segment);
             PlaySegmentScheduled(segment, WorldVariant.Intro);
         }
 

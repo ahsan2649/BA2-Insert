@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: World 1 Ver 3_Chart
   m_EditorClassIdentifier: 
   notes:
-  - lane: 2
+  - lane: 1
     songPosition: 1875
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 3750
     isHold: 0
     holdLength: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 5625
     isHold: 0
     holdLength: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 7500
     isHold: 0
     holdLength: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 8437.5
     isHold: 0
     holdLength: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 9375
     isHold: 0
     holdLength: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 10312.5
     isHold: 0
     holdLength: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 11250
     isHold: 0
     holdLength: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 12187.5
     isHold: 0
     holdLength: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 13125
     isHold: 0
     holdLength: 0
@@ -108,17 +108,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 14062.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 14531.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 15000
     isHold: 0
     holdLength: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 15468.75
     isHold: 0
     holdLength: 0
@@ -138,17 +138,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 15937.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 16406.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 16875
     isHold: 0
     holdLength: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 17343.75
     isHold: 0
     holdLength: 0
@@ -168,17 +168,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 17812.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 18281.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 18750
     isHold: 0
     holdLength: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 19218.75
     isHold: 0
     holdLength: 0
@@ -198,17 +198,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 19687.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 20156.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 20625
     isHold: 0
     holdLength: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 21093.75
     isHold: 0
     holdLength: 0
@@ -228,17 +228,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 21562.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 22031.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 22500
     isHold: 0
     holdLength: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 22968.75
     isHold: 0
     holdLength: 0
@@ -258,17 +258,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 23437.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 23906.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 24375
     isHold: 0
     holdLength: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 24843.75
     isHold: 0
     holdLength: 0
@@ -288,17 +288,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 25312.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 25781.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 26250
     isHold: 0
     holdLength: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 26718.75
     isHold: 0
     holdLength: 0
@@ -318,42 +318,42 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 27187.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 27656.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 28125
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 28593.75
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 29062.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 29531.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 30000
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 30468.75
     isHold: 0
     holdLength: 0
@@ -363,12 +363,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 30937.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 31406.25
     isHold: 0
     holdLength: 0
@@ -378,12 +378,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 31875
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 32343.75
     isHold: 0
     holdLength: 0
@@ -393,12 +393,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 32812.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 33281.25
     isHold: 0
     holdLength: 0
@@ -408,7 +408,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 33750
     isHold: 0
     holdLength: 0
@@ -418,17 +418,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 34218.75
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 34687.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 35156.25
     isHold: 0
     holdLength: 0
@@ -438,12 +438,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 35625
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 36093.75
     isHold: 0
     holdLength: 0
@@ -453,12 +453,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 36562.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 37031.25
     isHold: 0
     holdLength: 0
@@ -468,12 +468,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 37500
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 37968.75
     isHold: 0
     holdLength: 0
@@ -483,7 +483,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 38437.5
     isHold: 0
     holdLength: 0
@@ -493,17 +493,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 38906.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 39375
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 39843.75
     isHold: 0
     holdLength: 0
@@ -513,12 +513,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 40312.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 40781.25
     isHold: 0
     holdLength: 0
@@ -528,12 +528,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 41250
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 41718.75
     isHold: 0
     holdLength: 0
@@ -543,12 +543,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 42187.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 42656.25
     isHold: 0
     holdLength: 0
@@ -558,12 +558,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 43125
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 43593.75
     isHold: 0
     holdLength: 0
@@ -573,12 +573,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 44062.5
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 44531.25
     isHold: 0
     holdLength: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 45000
     isHold: 0
     holdLength: 0
@@ -598,12 +598,12 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 45468.75
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 45937.5
     isHold: 0
     holdLength: 0
@@ -613,17 +613,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 46406.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 46875
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 47812.5
     isHold: 0
     holdLength: 0
@@ -633,17 +633,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 48281.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 48750
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 49218.75
     isHold: 0
     holdLength: 0
@@ -653,17 +653,17 @@ MonoBehaviour:
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 50156.25
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 50625
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
+  - lane: 1
     songPosition: 51093.75
     isHold: 0
     holdLength: 0

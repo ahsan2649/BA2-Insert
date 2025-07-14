@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c71fade8c41fc483d94dec23ec4d1de6, type: 3}
-  m_Name: Signal
+  m_Name: Signal_SplinePreset
   m_EditorClassIdentifier: 
   knots:
   - Position:

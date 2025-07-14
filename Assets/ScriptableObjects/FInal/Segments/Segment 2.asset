@@ -23,7 +23,7 @@ MonoBehaviour:
     pair: {fileID: 11400000, guid: 416977e6853fe437d993045f31f3e411, type: 2}
   outcomeA:
     type: 3
-    splinePreset: {fileID: 11400000, guid: e064ada3eda4742de91346ba6b656773, type: 2}
+    splinePreset: {fileID: 11400000, guid: c806ff4e3459d46768f75597ac0d82a1, type: 2}
   outcomeB:
     type: 1
-    splinePreset: {fileID: 11400000, guid: 37abcdfe33d0b4ee1a2fc997661db0fb, type: 2}
+    splinePreset: {fileID: 11400000, guid: 3942af53e1e6b473cab52e5b8b0507b1, type: 2}

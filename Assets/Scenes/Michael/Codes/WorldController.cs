@@ -1,70 +1,59 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
-using Ahsan.ScriptableObjects; // Add this for WorldVariant enum
-using Ahsan; // Add this for NewConductor
+using Ahsan.ScriptableObjects;
+using Ahsan;
 
 public class WorldController : MonoBehaviour
 {
     // Singleton reference for easy access from spawned objects
     public static WorldController Instance { get; private set; }
 
-    [Header("Conductor Integration")]
-    [SerializeField] private Ahsan.NewConductor newConductor;
+    [Header("Music System Reference")]
+    [Tooltip("Reference to the NewConductor to listen for world changes")]
+    public NewConductor newConductor;
 
-    [Header("World Setup")]
-    public Transform worldsParent;
-    [Tooltip("Enable automatic world switching for testing (disable for event-driven switching)")]
+    [Header("World Setup - Drag & Drop")]
+    [Tooltip("Drag the Anthropocene world GameObject here")]
+    public GameObject anthropoceneWorld;
+    [Tooltip("Drag the Post Human Biome world GameObject here")]
+    public GameObject postHumanBiomeWorld;
+    [Tooltip("Drag the Signal world GameObject here")]
+    public GameObject signalWorld;
+    [Tooltip("Drag the Chaos world GameObject here")]
+    public GameObject chaosWorld;
+
+    [Header("World Activation Toggles")]
+    [Tooltip("Toggle to activate Anthropocene world")]
+    public bool activateAnthropocene = false;
+    [Tooltip("Toggle to activate Post Human Biome world")]
+    public bool activatePostHumanBiome = false;
+    [Tooltip("Toggle to activate Signal world")]
+    public bool activateSignal = false;
+    [Tooltip("Toggle to activate Chaos world")]
+    public bool activateChaos = false;
+
+    [Header("Testing")]
+    [Tooltip("Enable automatic world switching for testing")]
     public bool enableAutoSwitching = false;
+    public float switchInterval = 5f;
 
-    [Header("Timing")]
-    public float switchInterval = 10f;
-    public float glitchDuration = 2f;
+    [Header("Music-Driven World Changes")]
+    [Tooltip("Enable automatic world switching based on music segments")]
+    public bool enableMusicDrivenSwitching = true;
 
-    [Header("Full-Screen Glitch")]
+    [Header("Glitch Effect")]
     public Material glitchMaterial;
+    public float glitchDuration = 2f;
     public float glitchNoiseAmount = 100f;
     public float glitchStrength = 30f;
     public float glitchScanLinesStrength = 0f;
-
-    [Header("Membrane Appearance")]
-    [Tooltip("Main ripple texture per world, in same order as your Worlds.")]
-    public Texture[] membraneMainTextures;
-    public Renderer[] membraneRenderers;
-    public int rippleMaterialIndex = 1;
-    public string mainTextureProperty = "_MainTex";
-    public string tintColorProperty = "_TintColor";
-
-    [Tooltip("How much darker the membrane tint is relative to the lane color (0–1)")]
-    [Range(0f, 1f)]
-    public float membraneDimFactor = 0.8f;
 
     [Header("Lane Appearance")]
     [Tooltip("All your lane Renderers")]
     public Renderer[] laneRenderers;
     [Tooltip("Shader property names on your gradient shader")]
     public string[] laneColorProperties = new[] { "_Color" };
-
-    [Header("Circuit Appearance (World3)")]
-    [Tooltip("Renderers on your circuit world (e.g. the big CircuitBackground quad)")]
-    public Renderer[] circuitRenderers;
-    [Tooltip("Which sub-material index contains the circuit/flow shader")]
-    public int circuitMaterialIndex = 0;
-    public string circuitColorProperty = "_CircuitColor";
-    public string flowColorProperty = "_FlowColor";
-
-    [Tooltip("0 = black, 1 = same brightness, >1 = even brighter")]
-    [Range(0f, 12f)] public float circuitDimFactor = 0.5f;
-    [Range(0f, 20f)] public float flowBrightFactor = 1.5f;
-
-    [Header("World4 Crack Background")]
-    [Tooltip("Reference to World4Controller to sync crack background color")]
-    public World4Controller world4Controller;
-    [Tooltip("Shader property name for crack texture background color")]
-    public string crackBackgroundProperty = "_CrackColor";
-    [Tooltip("Fixed HDR intensity for crack background (independent of other colors)")]
-    [Range(1f, 5f)]
-    public float crackBackgroundIntensity = 2f;
 
     [Header("Particles Membrane Appearance")]
     [Tooltip("The Bubble material used by ParticlesMembrane objects")]
@@ -83,14 +72,11 @@ public class WorldController : MonoBehaviour
     [Tooltip("Intensity multipliers for each orb color property (same order as orbColorProperties)")]
     public float[] orbColorIntensities = new[] { 1.5f, 0.8f, 1.0f, 1.3f, 0.6f };
 
-    // internals
-    GameObject[] worlds;
-    int currentIndex = 0;
-    float defaultNoise,
-            defaultStrength,
-            defaultScan;
-
-    // Store current lane color for dynamically spawned particles
+    // Internal state
+    private GameObject[] worlds;
+    private bool[] previousToggleStates = new bool[4];
+    private WorldVariant currentWorldVariant = WorldVariant.Intro;
+    private float defaultNoise, defaultStrength, defaultScan;
     private Color currentLaneColor = Color.white;
 
     void Start()
@@ -98,239 +84,307 @@ public class WorldController : MonoBehaviour
         // Set singleton instance
         Instance = this;
 
-        // gather worlds and deactivate all initially (intro should have no active worlds)
-        int n = worldsParent.childCount;
-        worlds = new GameObject[n];
-        for (int i = 0; i < n; i++)
+        // Initialize worlds
+        InitializeWorlds();
+
+        // Cache default glitch values
+        CacheGlitchDefaults();
+
+        // Initialize toggle states
+        InitializeToggleStates();
+
+        // Subscribe to music events if enabled
+        if (enableMusicDrivenSwitching && newConductor != null)
         {
-            worlds[i] = worldsParent.GetChild(i).gameObject;
-            worlds[i].SetActive(false); // All worlds start deactivated during intro
+            newConductor.OnNewSongStarted += OnMusicWorldChange;
+            Debug.Log("WorldController: Subscribed to music-driven world changes");
         }
 
-        // cache default glitch values & reset
-        defaultNoise = glitchMaterial.GetFloat("_NoiseAmount");
-        defaultStrength = glitchMaterial.GetFloat("_GlitchStrength");
-        defaultScan = glitchMaterial.GetFloat("_ScanLinesStrength");
-        SetGlitch(defaultNoise, defaultStrength, defaultScan);
-
-        // Don't apply any appearance during intro - wait for event-driven switching
-
-        // start automatic switching only if enabled (for testing purposes)
+        // Start automatic switching only if enabled (for testing purposes)
         if (enableAutoSwitching)
         {
+            Debug.Log("WorldController: Auto-switching is ENABLED - starting auto switch");
             StartCoroutine(AutoSwitch());
         }
-    }
-
-    private void OnEnable()
-    {
-        // Subscribe to the conductor's event
-        if (newConductor != null)
+        else
         {
-            newConductor.OnNewSongStarted += ApplyAppearanceOnSongStart;
+            Debug.Log("WorldController: Toggle-based world control active");
         }
     }
 
-    private void OnDisable()
+    void Update()
     {
-        // Unsubscribe from the conductor's event
-        if (newConductor != null)
+        // Only check toggles if auto-switching and music-driven switching are both disabled
+        if (!enableAutoSwitching && !enableMusicDrivenSwitching)
         {
-            newConductor.OnNewSongStarted -= ApplyAppearanceOnSongStart;
+            CheckToggleChanges();
         }
     }
 
-    // Event handler that matches the conductor's event signature
-    private void ApplyAppearanceOnSongStart(Segment segment, WorldVariant worldVariant)
+    void OnDestroy()
     {
-        ApplyAppearance(worldVariant);
-
-        // Activate the corresponding world GameObject
-        ActivateWorld(worldVariant);
-
-        // Trigger glitch effect
-        StartCoroutine(GlitchEffect());
+        // Unsubscribe from events to prevent memory leaks
+        if (newConductor != null)
+        {
+            newConductor.OnNewSongStarted -= OnMusicWorldChange;
+        }
     }
 
-    private void ActivateWorld(WorldVariant worldVariant)
-    {
-        // Get the index for the new world
-        int newIndex = WorldVariantToIndex(worldVariant);
+    #region Music Event Handling
 
-        // If it's intro or invalid, deactivate all worlds
-        if (newIndex < 0 || newIndex >= worlds.Length)
+    private void OnMusicWorldChange(Segment segment, WorldVariant worldVariant)
+    {
+        Debug.Log($"WorldController: Music event received - switching to {worldVariant}");
+
+        // Update current world variant
+        currentWorldVariant = worldVariant;
+
+        // Switch based on the world variant
+        switch (worldVariant)
         {
-            for (int i = 0; i < worlds.Length; i++)
+            case WorldVariant.Intro:
+                // For intro, deactivate all worlds (empty state)
+                DeactivateAllWorlds();
+                ResetAllToggles();
+                Debug.Log("WorldController: Intro - all worlds deactivated");
+                break;
+
+            case WorldVariant.Anthropocene:
+                ActivateWorldByIndex(0);
+                break;
+
+            case WorldVariant.PostHumanBiome:
+                ActivateWorldByIndex(1);
+                break;
+
+            case WorldVariant.Signal:
+                ActivateWorldByIndex(2);
+                break;
+
+            case WorldVariant.Chaos:
+                ActivateWorldByIndex(3);
+                break;
+
+            default:
+                Debug.LogWarning($"WorldController: Unknown WorldVariant: {worldVariant}");
+                break;
+        }
+    }
+
+    #endregion
+
+    private void InitializeWorlds()
+    {
+        // Create array from the dragged world references
+        worlds = new GameObject[4];
+        worlds[0] = anthropoceneWorld;
+        worlds[1] = postHumanBiomeWorld;
+        worlds[2] = signalWorld;
+        worlds[3] = chaosWorld;
+
+        // Check for missing references
+        for (int i = 0; i < worlds.Length; i++)
+        {
+            if (worlds[i] == null)
             {
-                worlds[i].SetActive(false);
+                Debug.LogError($"WorldController: {GetWorldName(i)} world GameObject is not assigned! Please drag it to the inspector.");
             }
-            currentIndex = -1; // No world active
+            else
+            {
+                worlds[i].SetActive(false); // All worlds start deactivated
+                Debug.Log($"World {i}: {worlds[i].name} ({GetWorldName(i)})");
+            }
+        }
+    }
+
+    private void CacheGlitchDefaults()
+    {
+        if (glitchMaterial != null)
+        {
+            defaultNoise = glitchMaterial.GetFloat("_NoiseAmount");
+            defaultStrength = glitchMaterial.GetFloat("_GlitchStrength");
+            defaultScan = glitchMaterial.GetFloat("_ScanLinesStrength");
+            SetGlitch(defaultNoise, defaultStrength, defaultScan);
+        }
+    }
+
+    private void InitializeToggleStates()
+    {
+        previousToggleStates[0] = activateAnthropocene;
+        previousToggleStates[1] = activatePostHumanBiome;
+        previousToggleStates[2] = activateSignal;
+        previousToggleStates[3] = activateChaos;
+    }
+
+    private void CheckToggleChanges()
+    {
+        bool[] currentStates = {
+            activateAnthropocene,
+            activatePostHumanBiome,
+            activateSignal,
+            activateChaos
+        };
+
+        // Check if any toggle changed to true
+        for (int i = 0; i < 4; i++)
+        {
+            if (currentStates[i] && !previousToggleStates[i])
+            {
+                // This toggle was just activated
+                ActivateWorldByIndex(i);
+                break; // Only activate one world at a time
+            }
+        }
+
+        // Update previous states
+        System.Array.Copy(currentStates, previousToggleStates, 4);
+    }
+
+    private void ActivateWorldByIndex(int worldIndex)
+    {
+        if (worlds == null || worldIndex < 0 || worldIndex >= worlds.Length)
+        {
+            Debug.LogError($"WorldController: Invalid world index {worldIndex}");
             return;
         }
 
-        // Deactivate current world if one is active
-        if (currentIndex >= 0 && currentIndex < worlds.Length)
-        {
-            worlds[currentIndex].SetActive(false);
-        }
+        // Deactivate all worlds first
+        DeactivateAllWorlds();
 
-        // Activate new world
-        currentIndex = newIndex;
-        worlds[currentIndex].SetActive(true);
+        // Reset all toggles except the one being activated
+        ResetTogglesExcept(worldIndex);
+
+        // Activate the selected world
+        worlds[worldIndex].SetActive(true);
+
+        // Update current world variant
+        currentWorldVariant = IndexToWorldVariant(worldIndex);
+
+        // Apply visual effects
+        ApplyColorTheme();
+
+        // Trigger glitch effect
+        StartCoroutine(GlitchEffect());
+
+        Debug.Log($"WorldController: Activated {GetWorldName(worldIndex)} (index {worldIndex}) - {currentWorldVariant}");
     }
 
-    private int WorldVariantToIndex(WorldVariant worldVariant)
+    private void DeactivateAllWorlds()
     {
-        return worldVariant switch
+        if (worlds == null) return;
+
+        for (int i = 0; i < worlds.Length; i++)
         {
-            WorldVariant.Intro => 0,
-            WorldVariant.Anthropocene => 1,
-            WorldVariant.PostHumanBiome => 2,
-            WorldVariant.Signal => 3,
-            WorldVariant.Chaos => 4,
-            _ => 0
+            if (worlds[i] != null)
+            {
+                worlds[i].SetActive(false);
+            }
+        }
+    }
+
+    private void ResetTogglesExcept(int activeIndex)
+    {
+        activateAnthropocene = (activeIndex == 0);
+        activatePostHumanBiome = (activeIndex == 1);
+        activateSignal = (activeIndex == 2);
+        activateChaos = (activeIndex == 3);
+
+        // Update previous states to match current
+        InitializeToggleStates();
+    }
+
+    private void ResetAllToggles()
+    {
+        activateAnthropocene = false;
+        activatePostHumanBiome = false;
+        activateSignal = false;
+        activateChaos = false;
+
+        // Update previous states to match current
+        InitializeToggleStates();
+    }
+
+    private string GetWorldName(int index)
+    {
+        return index switch
+        {
+            0 => "Anthropocene",
+            1 => "Post Human Biome",
+            2 => "Signal",
+            3 => "Chaos",
+            _ => "Unknown"
         };
-    }
-
-    private IEnumerator GlitchEffect()
-    {
-        SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
-        yield return new WaitForSeconds(glitchDuration);
-        SetGlitch(defaultNoise, defaultStrength, defaultScan);
-    }
-
-    IEnumerator AutoSwitch()
-    {
-        // Start with first world (Anthropocene) if auto-switching is enabled
-        currentIndex = 0;
-        worlds[currentIndex].SetActive(true);
-        ApplyAppearance(WorldVariant.Anthropocene);
-
-        while (true)
-        {
-            yield return new WaitForSeconds(switchInterval);
-
-            // swap worlds (cycle through the 4 actual worlds, not intro)
-            worlds[currentIndex].SetActive(false);
-            currentIndex = (currentIndex + 1) % 4; // Only cycle through 4 worlds
-            worlds[currentIndex].SetActive(true);
-
-            // Convert index back to WorldVariant for the refactored method
-            WorldVariant variant = IndexToWorldVariant(currentIndex);
-            ApplyAppearance(variant);
-
-            // glitch flash
-            SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
-            yield return new WaitForSeconds(glitchDuration);
-            SetGlitch(defaultNoise, defaultStrength, defaultScan);
-        }
     }
 
     private WorldVariant IndexToWorldVariant(int index)
     {
         return index switch
         {
-            0 => WorldVariant.Intro,
-            1 => WorldVariant.Anthropocene,
-            2 => WorldVariant.PostHumanBiome,
-            3 => WorldVariant.Signal,
-            4 => WorldVariant.Chaos,
+            0 => WorldVariant.Anthropocene,
+            1 => WorldVariant.PostHumanBiome,
+            2 => WorldVariant.Signal,
+            3 => WorldVariant.Chaos,
             _ => WorldVariant.Intro
         };
     }
 
-    void ApplyAppearance(WorldVariant worldVariant)
-    {
-        // Convert WorldVariant to index for array access
-        int idx = WorldVariantToIndex(worldVariant);
+    #region Color Theme (Shared Elements)
 
-        // 1) pick a base HDR color for lanes
-        Color laneHDR = Color.HSVToRGB(
+    private void ApplyColorTheme()
+    {
+        // Generate a unified color theme for elements that span across worlds
+        Color themeColor = Color.HSVToRGB(
             Random.value,
             1f,
             Random.Range(1f, 5f),
             true
         );
 
-        // Store current lane color for dynamically spawned particles
-        currentLaneColor = laneHDR;
+        currentLaneColor = themeColor;
 
-        // 2) derive a slightly darker HDR for membranes
-        Color.RGBToHSV(laneHDR, out float h, out float s, out float v);
-        float vMem = v * membraneDimFactor;
-        Color membraneHDR = Color.HSVToRGB(h, s, vMem, true);
+        // Apply to lanes
+        ApplyLaneColors(themeColor);
 
-        // 3) swap membrane ripple texture + tint
-        if (membraneMainTextures != null && idx < membraneMainTextures.Length)
+        // Apply to particle effects
+        ApplyParticleEffects();
+
+        // Apply to orb effects
+        ApplyOrbColors();
+
+        Debug.Log($"Applied color theme: {themeColor} for world: {currentWorldVariant}");
+    }
+
+    private void ApplyLaneColors(Color laneColor)
+    {
+        if (laneRenderers != null)
         {
-            Texture newMain = membraneMainTextures[idx];
-            foreach (var rend in membraneRenderers)
+            foreach (var laneRenderer in laneRenderers)
             {
-                var mats = rend.materials;
-                if (rippleMaterialIndex < mats.Length)
+                if (laneRenderer != null && laneRenderer.material != null)
                 {
-                    mats[rippleMaterialIndex].SetTexture(mainTextureProperty, newMain);
-                    mats[rippleMaterialIndex].SetColor(tintColorProperty, membraneHDR);
-                    rend.materials = mats;
+                    var material = laneRenderer.material;
+                    foreach (var property in laneColorProperties)
+                    {
+                        if (material.HasProperty(property))
+                        {
+                            material.SetColor(property, laneColor);
+                        }
+                    }
                 }
             }
         }
+    }
 
-        // 4) recolor lanes with the brighter HDR
-        foreach (var lr in laneRenderers)
-        {
-            var mat = lr.material;
-            foreach (var prop in laneColorProperties)
-                mat.SetColor(prop, laneHDR);
-        }
-
-        // 5) if this is Signal (World 3), tint the circuit & flow as before
-        if (worldVariant == WorldVariant.Signal && circuitRenderers != null)
-        {
-            Color darkCircuit = Color.HSVToRGB(h, s, v * circuitDimFactor, true);
-            Color brightFlow = Color.HSVToRGB(h, s, v * flowBrightFactor, true);
-
-            foreach (var cr in circuitRenderers)
-            {
-                var mats = cr.materials;
-                if (circuitMaterialIndex < mats.Length)
-                {
-                    mats[circuitMaterialIndex].SetColor(circuitColorProperty, darkCircuit);
-                    mats[circuitMaterialIndex].SetColor(flowColorProperty, brightFlow);
-                    cr.materials = mats;
-                }
-            }
-        }
-
-        // 6) if this is Chaos (World 4), update crack background to match membrane color
-        if (worldVariant == WorldVariant.Chaos && world4Controller != null && world4Controller.backgroundRenderer != null)
-        {
-            var material = world4Controller.backgroundRenderer.material;
-            if (material.HasProperty(crackBackgroundProperty))
-            {
-                // Create bright, saturated crack background with fixed HDR intensity
-                // Position closer to top-left (higher saturation, higher brightness)
-                Color brightCrackBackground = Color.HSVToRGB(h, 0.9f, crackBackgroundIntensity, true);
-
-                material.SetColor(crackBackgroundProperty, brightCrackBackground);
-
-                // Update the World4Controller's crackBackgroundColor field so it shows in inspector
-                world4Controller.crackBackgroundColor = brightCrackBackground;
-            }
-        }
-
-        // 7) Update particles membrane fresnel color to match current lane color
+    private void ApplyParticleEffects()
+    {
         if (bubbleMaterial != null && bubbleMaterial.HasProperty(fresnelColorProperty))
         {
             Color fresnelColor = currentLaneColor * particlesMembraneIntensity;
             bubbleMaterial.SetColor(fresnelColorProperty, fresnelColor);
         }
-
-        // 8) Update Orb Visual Effect colors to match current lane color
-        ApplyOrbColors();
     }
 
-    void ApplyOrbColors()
+    private void ApplyOrbColors()
     {
         if (orbVisualEffect == null || orbColorProperties == null) return;
 
@@ -338,45 +392,152 @@ public class WorldController : MonoBehaviour
         {
             if (orbVisualEffect.HasVector4(orbColorProperties[i]))
             {
-                // Get intensity multiplier for this property (default to 1.0 if not enough intensities specified)
                 float intensity = i < orbColorIntensities.Length ? orbColorIntensities[i] : 1.0f;
-
-                // Apply the current lane color with the specified intensity
                 Color orbColor = currentLaneColor * intensity;
                 orbVisualEffect.SetVector4(orbColorProperties[i], orbColor);
             }
         }
     }
 
-    void SetGlitch(float noise, float str, float scan)
-    {
-        glitchMaterial.SetFloat("_NoiseAmount", noise);
-        glitchMaterial.SetFloat("_GlitchStrength", str);
-        glitchMaterial.SetFloat("_ScanLinesStrength", scan);
-    }
+    #endregion
 
-    // Public method to apply current lane color to newly spawned ParticlesMembrane objects
-    public void ApplyCurrentColorToParticle(GameObject particleObject)
+    #region Effects
+
+    private IEnumerator GlitchEffect()
     {
-        // Update the shared Bubble material's Fresnel color with current lane color
-        if (bubbleMaterial != null && bubbleMaterial.HasProperty(fresnelColorProperty))
+        if (glitchMaterial != null)
         {
-            // Apply the current lane color with the specified HDR intensity for particles membrane
-            Color fresnelColor = currentLaneColor * particlesMembraneIntensity;
-            bubbleMaterial.SetColor(fresnelColorProperty, fresnelColor);
+            SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
+            yield return new WaitForSeconds(glitchDuration);
+            SetGlitch(defaultNoise, defaultStrength, defaultScan);
         }
     }
 
-    // Public method to manually update orb colors (useful for testing or external calls)
+    private void SetGlitch(float noise, float strength, float scanLines)
+    {
+        if (glitchMaterial != null)
+        {
+            glitchMaterial.SetFloat("_NoiseAmount", noise);
+            glitchMaterial.SetFloat("_GlitchStrength", strength);
+            glitchMaterial.SetFloat("_ScanLinesStrength", scanLines);
+        }
+    }
+
+    #endregion
+
+    #region Auto-Switching (Testing)
+
+    private IEnumerator AutoSwitch()
+    {
+        Debug.Log("Starting auto-switch mode for testing");
+
+        int currentIndex = 0;
+
+        while (true)
+        {
+            // Activate current world
+            ActivateWorldByIndex(currentIndex);
+
+            yield return new WaitForSeconds(switchInterval);
+
+            // Move to next world (cycle through 0-3)
+            currentIndex = (currentIndex + 1) % 4;
+        }
+    }
+
+    #endregion
+
+    #region Public Interface
+
+    [ContextMenu("Activate Anthropocene World")]
+    public void ActivateAnthropoceneWorld()
+    {
+        if (anthropoceneWorld == null)
+        {
+            Debug.LogError("WorldController: Anthropocene world is not assigned!");
+            return;
+        }
+        activateAnthropocene = true;
+        ActivateWorldByIndex(0);
+    }
+
+    [ContextMenu("Activate Post Human Biome World")]
+    public void ActivatePostHumanBiomeWorld()
+    {
+        if (postHumanBiomeWorld == null)
+        {
+            Debug.LogError("WorldController: Post Human Biome world is not assigned!");
+            return;
+        }
+        activatePostHumanBiome = true;
+        ActivateWorldByIndex(1);
+    }
+
+    [ContextMenu("Activate Signal World")]
+    public void ActivateSignalWorld()
+    {
+        if (signalWorld == null)
+        {
+            Debug.LogError("WorldController: Signal world is not assigned!");
+            return;
+        }
+        activateSignal = true;
+        ActivateWorldByIndex(2);
+    }
+
+    [ContextMenu("Activate Chaos World")]
+    public void ActivateChaosWorld()
+    {
+        if (chaosWorld == null)
+        {
+            Debug.LogError("WorldController: Chaos world is not assigned!");
+            return;
+        }
+        activateChaos = true;
+        ActivateWorldByIndex(3);
+    }
+
+    [ContextMenu("Deactivate All Worlds")]
+    public void DeactivateAllWorldsPublic()
+    {
+        DeactivateAllWorlds();
+        ResetAllToggles();
+        currentWorldVariant = WorldVariant.Intro;
+        Debug.Log("All worlds deactivated");
+    }
+
+    public void ApplyCurrentColorToParticle(GameObject particleObject)
+    {
+        ApplyParticleEffects();
+    }
+
     public void UpdateOrbColors()
     {
         ApplyOrbColors();
     }
 
-    // Public method to manually apply appearance with WorldVariant (useful for testing)
-    public void ManualApplyAppearance(WorldVariant worldVariant)
+    public WorldVariant GetCurrentWorldVariant()
     {
-        ApplyAppearance(worldVariant);
-        ActivateWorld(worldVariant);
+        return currentWorldVariant;
     }
+
+    public Color GetCurrentLaneColor()
+    {
+        return currentLaneColor;
+    }
+
+    // Helper method to get world GameObject by variant
+    public GameObject GetWorldGameObject(WorldVariant variant)
+    {
+        return variant switch
+        {
+            WorldVariant.Anthropocene => anthropoceneWorld,
+            WorldVariant.PostHumanBiome => postHumanBiomeWorld,
+            WorldVariant.Signal => signalWorld,
+            WorldVariant.Chaos => chaosWorld,
+            _ => null
+        };
+    }
+
+    #endregion
 }

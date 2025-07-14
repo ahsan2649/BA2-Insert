@@ -13,203 +13,148 @@ MonoBehaviour:
   m_Name: World 1 Ver 1_Chart
   m_EditorClassIdentifier: 
   notes:
-  - lane: 2
-    songPosition: 9590
+  - lane: 1
+    songPosition: 3007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 10090
+    songPosition: 4007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 11090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 0
-    songPosition: 12090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 14090
+  - lane: 1
+    songPosition: 7007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 15090
+    songPosition: 8007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 16090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 0
-    songPosition: 18090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 19090
+  - lane: 1
+    songPosition: 11007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 20090
+    songPosition: 12007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 21590
+  - lane: 1
+    songPosition: 14007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 0
-    songPosition: 22090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 23090
+  - lane: 1
+    songPosition: 15007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 24090
+    songPosition: 16007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 26090
+    songPosition: 19007
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 20007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 26590
+    songPosition: 23007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 27590
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 0
-    songPosition: 28090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 29590
+  - lane: 1
+    songPosition: 24007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 30090
+    songPosition: 27007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 30590
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 31590
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 32090
+  - lane: 1
+    songPosition: 28007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 32590
+    songPosition: 30007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 34090
+    songPosition: 32007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 34590
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 35590
+  - lane: 1
+    songPosition: 34007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 36090
+    songPosition: 35007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 37590
+  - lane: 1
+    songPosition: 36007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 0
-    songPosition: 38090
+  - lane: 1
+    songPosition: 38007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 38590
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 0
-    songPosition: 46090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 46590
+  - lane: 1
+    songPosition: 40007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 47590
+    songPosition: 43007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 48090
+  - lane: 1
+    songPosition: 44007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 0
-    songPosition: 49590
+  - lane: 1
+    songPosition: 46007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
-  - lane: 2
-    songPosition: 50090
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 0
-    songPosition: 50590
-    isHold: 0
-    holdLength: 0
-    hasSpawned: 0
-  - lane: 2
-    songPosition: 51090
+  - lane: 1
+    songPosition: 47007
     isHold: 0
     holdLength: 0
     hasSpawned: 0
   - lane: 0
-    songPosition: 52090
+    songPosition: 48007
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 51007
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 52007
     isHold: 0
     holdLength: 0
     hasSpawned: 0

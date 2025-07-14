@@ -9547,6 +9547,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
+  - component: {fileID: -5688124750552004441}
   m_Layer: 0
   m_Name: PurpleSkullSoul
   m_TagString: Untagged
@@ -14352,6 +14353,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-5688124750552004441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7213f933a47d81e43b12e62651d372ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyGame: 5
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
   m_Name: Intro
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 8300000, guid: 8bffa1028675a46febf85f38d432390b, type: 3}
+  audioFile: {fileID: 8300000, guid: 8191f8333df7b414a9519f01bf265969, type: 3}
   chart: {fileID: 11400000, guid: bd120ff6ebc134256b10056e7ca91656, type: 2}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 15000
-  decisionWindowEnd: 25000
+  decisionWindowStart: 18966
+  decisionWindowEnd: 23468

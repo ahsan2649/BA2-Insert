@@ -18,7 +18,7 @@ namespace Ahsan
         [HideInInspector] public float songPosition;
         [HideInInspector] public float songPositionInBeats;
 
-        [SerializeField] private bool showDebugGUI = true;
+        [SerializeField] private bool showDebugGUI = false;
         
         private double nextPlaybackPosition;
         private double songStartTime;
@@ -99,7 +99,11 @@ namespace Ahsan
 
         private void OnGUI()
         {
+            if (showDebugGUI)
+            {
             GUI.Box(new Rect(0, 0, 500, 250), songPosition.ToString());
+                
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Ahsan
 		// Duration means how long the note takes to go from one end to the other
 		public void SpawnNote(float duration, float hitTime)
 		{
-			var note = Instantiate(notePrefab, spline.transform.position, spline.transform.rotation);
+			var note = Instantiate(notePrefab, spline.transform.position + (Vector3)spline.Spline[0].Position, spline.transform.rotation);
 			notes.Add(note);
 			note.hitTime = hitTime;
 			note.splineAnimate.Container = spline;

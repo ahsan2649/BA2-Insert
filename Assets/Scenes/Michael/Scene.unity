@@ -2378,6 +2378,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5272640402294361087, guid: 9ce086b71a1344b5db13bce30c035b08, type: 3}
+      propertyPath: spline
+      value: 
+      objectReference: {fileID: 986710115}
+    - target: {fileID: 5272640402294361087, guid: 9ce086b71a1344b5db13bce30c035b08, type: 3}
+      propertyPath: decisionMaker
+      value: 
+      objectReference: {fileID: 1783267013}
     - target: {fileID: 7555113032126980401, guid: 9ce086b71a1344b5db13bce30c035b08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2445,6 +2453,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2001917278}
   m_SourcePrefab: {fileID: 100100000, guid: 9ce086b71a1344b5db13bce30c035b08, type: 3}
+--- !u!114 &986710115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7780869273964403913, guid: 9ce086b71a1344b5db13bce30c035b08, type: 3}
+  m_PrefabInstance: {fileID: 986710114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738810851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1005359062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 70c5b7d69571498488a6ea702abb0467, type: 3}
@@ -5096,6 +5115,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6df99e691354656840a3c1851af488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1783267013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5142542708150351270, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+  m_PrefabInstance: {fileID: 1783267011}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c7e148c08bd4505ae253e578896ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1803213364

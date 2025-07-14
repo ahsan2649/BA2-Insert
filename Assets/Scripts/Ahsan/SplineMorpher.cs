@@ -10,6 +10,9 @@ namespace Ahsan
 {
     public class SplineMorpher : MonoBehaviour
     {
+        [SerializeField] private WorldVariant morpherVariant;
+        [SerializeField] private bool closed;
+        [SerializeField] DecisionMaker decisionMaker;
         [SerializeField] SplineContainer spline;
         [SerializeField] float morphSpeed;
 #if DEBUG
@@ -19,9 +22,30 @@ namespace Ahsan
         BezierKnot[] initialSplineKnots;
         [SerializeField] private bool showDebugGUI = true;
 
+        private void OnEnable()
+        {
+            decisionMaker.OnDecisionWindowEnter += segment =>
+            {
+                if (segment.outcomeA.type == morpherVariant)
+                {
+                    Debug.Log("morphing");
+                    MorphTo(segment.outcomeA.splinePreset);
+                }
+                if (segment.outcomeB.type == morpherVariant)
+                {
+                    Debug.Log("morphing");
+                    MorphTo(segment.outcomeB.splinePreset);
+                }
+            };
+
+            decisionMaker.OnDecisionWindowExit += variant =>
+            {
+                MorphBack();
+            };
+        }
+
         private void Start()
         {
-            spline = GetComponent<SplineContainer>();
             initialSplineKnots = spline.Spline.ToArray();
             targetSplineKnots = spline.Spline.ToArray();
         }
@@ -64,11 +88,19 @@ namespace Ahsan
         void MorphTo(SplinePreset target)
         {
             targetSplineKnots = target.knots;
+            if (closed)
+            {
+                spline.Spline.Closed = closed;
+            }
         }
 
         void MorphBack()
         {
             targetSplineKnots = initialSplineKnots;
+            if (closed)
+            {
+                spline.Spline.Closed = !closed;
+            }
         }
     }
 }

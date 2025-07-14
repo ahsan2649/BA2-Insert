@@ -16,5 +16,5 @@ MonoBehaviour:
   chart: {fileID: 0}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 0
-  decisionWindowEnd: 0
+  decisionWindowStart: 15000
+  decisionWindowEnd: 25000

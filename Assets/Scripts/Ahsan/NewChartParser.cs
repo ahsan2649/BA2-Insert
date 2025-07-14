@@ -80,6 +80,12 @@ namespace Ahsan
 				print("no chart");
 				return;
 			}
+
+			if (noteIndex >= currentChart.notes.Length)
+			{
+				print("chart complete");
+				return;
+			}
 			var note = currentChart.notes[Mathf.Min(noteIndex, currentChart.notes.Length - 1)];
 			var lane = Lanes[note.lane % Lanes.Count];
 

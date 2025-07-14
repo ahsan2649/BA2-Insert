@@ -402,6 +402,7 @@ MonoBehaviour:
   musicSource2: {fileID: 7073017542976628315}
   songPosition: 0
   songPositionInBeats: 0
+  showDebugGUI: 1
 --- !u!1 &7157603398473490161
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +448,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Conductor: {fileID: 4078667135500837469}
-  Lanes: []
+  Lanes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7367742446097468527
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c7e148c08bd4505ae253e578896ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lanes: []
+  lanes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   conductor: {fileID: 4078667135500837469}
   hitCombo: 0
   missCombo: 0
@@ -532,6 +545,7 @@ MonoBehaviour:
   goodHits: 0
   greatHits: 0
   misses: 0
+  selectedVariant: 3
 --- !u!1 &9185478154708192012
 GameObject:
   m_ObjectHideFlags: 0

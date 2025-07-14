@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
   m_Name: Segment3_Chaos
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 0}
-  chart: {fileID: 0}
+  audioFile: {fileID: 8300000, guid: 853633fa3c11c4ba9938fa3e80327aec, type: 3}
+  chart: {fileID: 11400000, guid: 7c21aec3ef4af4572871fd9a382cc292, type: 2}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 0
-  decisionWindowEnd: 0
+  decisionWindowStart: 52714
+  decisionWindowEnd: 58248

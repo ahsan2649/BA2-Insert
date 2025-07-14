@@ -83,7 +83,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _FresnelColor: {r: 7.8758793, g: 4.767058, b: 0, a: 3}
+    - _FresnelColor: {r: 0, g: 6.093918, b: 1.1589969, a: 3}
     - _ScanlineSpeed: {r: 2, g: 2, b: 0, a: 0}
     - _ScanlineTiling: {r: 2, g: 3, b: 0, a: 0}
   m_BuildTextureStacks: []

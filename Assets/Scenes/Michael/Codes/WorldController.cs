@@ -14,6 +14,8 @@ public class WorldController : MonoBehaviour
 
     [Header("World Setup")]
     public Transform worldsParent;
+    [Tooltip("Enable automatic world switching for testing (disable for event-driven switching)")]
+    public bool enableAutoSwitching = false;
 
     [Header("Timing")]
     public float switchInterval = 10f;
@@ -41,7 +43,7 @@ public class WorldController : MonoBehaviour
     [Tooltip("All your lane Renderers")]
     public Renderer[] laneRenderers;
     [Tooltip("Shader property names on your gradient shader")]
-    public string[] laneColorProperties = new[] { "_Color01", "_Color02", "_Color03" };
+    public string[] laneColorProperties = new[] { "_Color" };
 
     [Header("Circuit Appearance (World3)")]
     [Tooltip("Renderers on your circuit world (e.g. the big CircuitBackground quad)")]
@@ -96,13 +98,13 @@ public class WorldController : MonoBehaviour
         // Set singleton instance
         Instance = this;
 
-        // gather worlds and activate only the first
+        // gather worlds and deactivate all initially (intro should have no active worlds)
         int n = worldsParent.childCount;
         worlds = new GameObject[n];
         for (int i = 0; i < n; i++)
         {
             worlds[i] = worldsParent.GetChild(i).gameObject;
-            worlds[i].SetActive(i == 0);
+            worlds[i].SetActive(false); // All worlds start deactivated during intro
         }
 
         // cache default glitch values & reset
@@ -111,11 +113,13 @@ public class WorldController : MonoBehaviour
         defaultScan = glitchMaterial.GetFloat("_ScanLinesStrength");
         SetGlitch(defaultNoise, defaultStrength, defaultScan);
 
-        // apply initial appearance (assuming Intro is the first world)
-        ApplyAppearance(WorldVariant.Intro);
+        // Don't apply any appearance during intro - wait for event-driven switching
 
-        // start automatic switching (keeping this for fallback/testing)
-        StartCoroutine(AutoSwitch());
+        // start automatic switching only if enabled (for testing purposes)
+        if (enableAutoSwitching)
+        {
+            StartCoroutine(AutoSwitch());
+        }
     }
 
     private void OnEnable()
@@ -150,18 +154,29 @@ public class WorldController : MonoBehaviour
 
     private void ActivateWorld(WorldVariant worldVariant)
     {
-        // Deactivate current world
-        if (currentIndex < worlds.Length)
+        // Get the index for the new world
+        int newIndex = WorldVariantToIndex(worldVariant);
+
+        // If it's intro or invalid, deactivate all worlds
+        if (newIndex < 0 || newIndex >= worlds.Length)
+        {
+            for (int i = 0; i < worlds.Length; i++)
+            {
+                worlds[i].SetActive(false);
+            }
+            currentIndex = -1; // No world active
+            return;
+        }
+
+        // Deactivate current world if one is active
+        if (currentIndex >= 0 && currentIndex < worlds.Length)
         {
             worlds[currentIndex].SetActive(false);
         }
 
-        // Convert WorldVariant to index and activate new world
-        currentIndex = WorldVariantToIndex(worldVariant);
-        if (currentIndex < worlds.Length)
-        {
-            worlds[currentIndex].SetActive(true);
-        }
+        // Activate new world
+        currentIndex = newIndex;
+        worlds[currentIndex].SetActive(true);
     }
 
     private int WorldVariantToIndex(WorldVariant worldVariant)
@@ -186,13 +201,18 @@ public class WorldController : MonoBehaviour
 
     IEnumerator AutoSwitch()
     {
+        // Start with first world (Anthropocene) if auto-switching is enabled
+        currentIndex = 0;
+        worlds[currentIndex].SetActive(true);
+        ApplyAppearance(WorldVariant.Anthropocene);
+
         while (true)
         {
             yield return new WaitForSeconds(switchInterval);
 
-            // swap worlds
+            // swap worlds (cycle through the 4 actual worlds, not intro)
             worlds[currentIndex].SetActive(false);
-            currentIndex = (currentIndex + 1) % worlds.Length;
+            currentIndex = (currentIndex + 1) % 4; // Only cycle through 4 worlds
             worlds[currentIndex].SetActive(true);
 
             // Convert index back to WorldVariant for the refactored method
@@ -264,7 +284,7 @@ public class WorldController : MonoBehaviour
                 mat.SetColor(prop, laneHDR);
         }
 
-        // 5) if this is Signal (previously World3), tint the circuit & flow as before
+        // 5) if this is Signal (World 3), tint the circuit & flow as before
         if (worldVariant == WorldVariant.Signal && circuitRenderers != null)
         {
             Color darkCircuit = Color.HSVToRGB(h, s, v * circuitDimFactor, true);
@@ -282,7 +302,7 @@ public class WorldController : MonoBehaviour
             }
         }
 
-        // 6) if this is Chaos (previously World4), update crack background to match membrane color
+        // 6) if this is Chaos (World 4), update crack background to match membrane color
         if (worldVariant == WorldVariant.Chaos && world4Controller != null && world4Controller.backgroundRenderer != null)
         {
             var material = world4Controller.backgroundRenderer.material;

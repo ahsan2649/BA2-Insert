@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ahsan.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Splines;
@@ -15,7 +16,7 @@ namespace Ahsan
 		List<Note> notes = new();
 
 		public event Action<float> OnNoteDestroyed;
-	
+		public event Action<WorldVariant> OnDecisionNote;
 		private void OnEnable()
 		{
 			key.Enable();
@@ -66,6 +67,10 @@ namespace Ahsan
 		public void DestroyNote(Note note)
 		{
 			OnNoteDestroyed?.Invoke(note.hitTime);
+			if (note.isDecisionNote)
+			{
+				OnDecisionNote?.Invoke(note.outcome);
+			}
 			Destroy(note.gameObject);
 		}
 	
@@ -76,6 +81,23 @@ namespace Ahsan
 			// this isnt real? if you could figure this out that would be awesome
 			// return spline.GetLength()
 			return 30;
+		}
+
+		public void SpawnDecisionNote(Note decisionNotePrefab, float duration, float hitTime)
+		{
+			var note = Instantiate(decisionNotePrefab, spline.transform.position + (Vector3)spline.Spline[0].Position, spline.transform.rotation);
+			notes.Add(note);
+			note.hitTime = hitTime;
+			note.splineAnimate.Container = spline;
+			note.splineAnimate.Duration = duration;
+
+			note.splineAnimate.Completed += (() =>
+			{
+				notes.Remove(note);
+				DestroyNote(note);
+			});
+		
+			note.splineAnimate.Play();
 		}
 	}
 }

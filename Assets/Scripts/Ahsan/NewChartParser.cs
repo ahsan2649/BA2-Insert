@@ -44,7 +44,6 @@ namespace Ahsan
 		// public GameObject Conductor;
 		public NewConductor Conductor;
 		public List<Lane> Lanes;
-
 		// This should be an editable setting with range like 5-30
 		const float scrollSpeed = 20;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Ahsan.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -9,7 +10,8 @@ namespace Ahsan
 	{
 		public SplineAnimate splineAnimate;
 		public float hitTime;
-
+        public bool isDecisionNote = false;
+        public WorldVariant outcome;
         [Header("VFX")]
         [Tooltip("Assign a particle prefab that plays once and then auto‐destroys itself")]
         public GameObject hitParticlePrefab;

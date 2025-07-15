@@ -23,7 +23,9 @@ MonoBehaviour:
     pair: {fileID: 11400000, guid: 5b13e69f806c74130abd30ead302e5da, type: 2}
   outcomeA:
     type: 3
-    splinePreset: {fileID: 11400000, guid: c806ff4e3459d46768f75597ac0d82a1, type: 2}
+    splinePreset: {fileID: 11400000, guid: 0a71242dc43f14c928ff6a4e50b5bd4a, type: 2}
+    decisionNotePrefab: {fileID: 2438314306368045075, guid: 8cd94a8c131134f14931cfc607558d2b, type: 3}
   outcomeB:
     type: 4
-    splinePreset: {fileID: 11400000, guid: f459fa9109e0e4fa3ab326e3db63c926, type: 2}
+    splinePreset: {fileID: 11400000, guid: e49ea0b40bf8d49e08f219c946db3bca, type: 2}
+    decisionNotePrefab: {fileID: 2438314306368045075, guid: 5c63faa9532df4e6e86af388555019b9, type: 3}

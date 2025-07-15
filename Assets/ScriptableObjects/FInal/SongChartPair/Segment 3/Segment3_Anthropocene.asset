@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
   m_Name: Segment3_Anthropocene
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 0}
-  chart: {fileID: 0}
+  audioFile: {fileID: 8300000, guid: 55f6aac8a9de9441bb9d4c0981ef1911, type: 3}
+  chart: {fileID: 11400000, guid: 3b1188081a87e47b1acd23bcd16e41e1, type: 2}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 0
-  decisionWindowEnd: 0
+  decisionWindowStart: 55000
+  decisionWindowEnd: 59000

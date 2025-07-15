@@ -26,6 +26,7 @@ namespace Ahsan.ScriptableObjects
     {
         public WorldVariant type;
         public SplinePreset splinePreset;
+        public Note decisionNotePrefab;
     }
 
 

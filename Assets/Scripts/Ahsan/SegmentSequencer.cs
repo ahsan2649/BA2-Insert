@@ -9,7 +9,7 @@ public class SegmentSequencer : MonoBehaviour
     public DecisionMaker decisionMaker;
     public NewConductor newConductor;
     public List<Segment> segments;
-    public int currentSegment;
+    public static int CurrentSegment = 0;
     public WorldVariant currentWorldVariant = WorldVariant.Anthropocene;
 
     private void OnEnable()
@@ -20,11 +20,16 @@ public class SegmentSequencer : MonoBehaviour
 
     private void QueueNextSegment(Segment segment, WorldVariant variant)
     {
-        currentSegment++;
+        CurrentSegment++;
     }
 
     private void SetCurrentWorldVariant(WorldVariant variant)
     {
         currentWorldVariant = variant;
+    }
+
+    private void OnDisable()
+    {
+        CurrentSegment = 0;
     }
 }

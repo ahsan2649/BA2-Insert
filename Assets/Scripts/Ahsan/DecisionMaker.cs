@@ -57,7 +57,7 @@ namespace Ahsan
         private void SpawnDecisionNotes(Segment segment)
         {
             lanes[0].SpawnDecisionNote(segment.outcomeA.decisionNotePrefab, 30 / 10, conductor.songPosition + 30 * 100);
-            lanes[1].SpawnDecisionNote(segment.outcomeB.decisionNotePrefab,  30 / 10, conductor.songPosition + 30 * 100);
+            lanes[1].SpawnDecisionNote(segment.outcomeB.decisionNotePrefab, 30 / 10, conductor.songPosition + 30 * 100);
         }
 
         private void MakeDecision(WorldVariant variant)
@@ -67,8 +67,175 @@ namespace Ahsan
                 return;
             }
 
-            selectedVariant = variant;
+            WorldVariant val;
+            if (hitCombo > 5)
+            {
+                val = WorldVariant.Anthropocene;
+            }
+            else if (missCombo > 5)
+            {
+                val = WorldVariant.PostHumanBiome;
+            }
+            else if (perfectHits > 3 || greatHits > 5)
+            {
+                val = WorldVariant.Signal;
+            }
+            else
+            {
+                val = WorldVariant.Chaos;
+            }
+            
+            selectedVariant = DecisionMatrix(val, variant);
             isDecisionMade = true;
+        }
+
+        private WorldVariant DecisionMatrix(WorldVariant playStyle, WorldVariant decision)
+        {
+            switch (SegmentSequencer.CurrentSegment)
+            {
+                case 0:
+                    switch (decision)
+                    {
+                        case WorldVariant.Anthropocene:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                case WorldVariant.PostHumanBiome:
+                                case WorldVariant.Signal:
+                                    return WorldVariant.Anthropocene;
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.Chaos;
+                            }
+
+                            break;
+                        case WorldVariant.PostHumanBiome:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                case WorldVariant.PostHumanBiome:
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.PostHumanBiome;
+                                case WorldVariant.Signal:
+                                    return WorldVariant.Chaos;
+                            }
+
+                            break;
+                    }
+
+                    break;
+                case 1:
+                    switch (decision)
+                    {
+                        case WorldVariant.Signal:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                case WorldVariant.Signal:
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.Signal;
+                                case WorldVariant.PostHumanBiome:
+                                    return WorldVariant.PostHumanBiome;
+                            }
+
+                            break;
+                        case WorldVariant.Chaos:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                    return WorldVariant.Anthropocene;
+                                case WorldVariant.PostHumanBiome:
+                                case WorldVariant.Signal:
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.Chaos;
+                            }
+
+                            break;
+                    }
+
+                    break;
+                case 2:
+                    switch (decision)
+                    {
+                        case WorldVariant.Anthropocene:
+                            return playStyle;
+                        case WorldVariant.Signal:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                case WorldVariant.Signal:
+                                    return WorldVariant.Anthropocene;
+                                case WorldVariant.PostHumanBiome:
+                                    return WorldVariant.Signal;
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.Chaos;
+                            }
+
+                            break;
+                    }
+
+                    break;
+                case 3:
+                    switch (decision)
+                    {
+                        case WorldVariant.PostHumanBiome:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                    return WorldVariant.Anthropocene;
+                                case WorldVariant.PostHumanBiome:
+                                    return WorldVariant.PostHumanBiome;
+                                case WorldVariant.Signal:
+                                    return WorldVariant.Signal;
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.PostHumanBiome;
+                            }
+
+                            break;
+                        case WorldVariant.Chaos:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                    return WorldVariant.Anthropocene;
+                                case WorldVariant.PostHumanBiome:
+                                    return WorldVariant.PostHumanBiome;
+                                case WorldVariant.Signal:
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.Chaos;
+                            }
+
+                            break;
+                    }
+
+                    break;
+                case 4:
+                    switch (decision)
+                    {
+                        case WorldVariant.Anthropocene:
+                            return playStyle;
+                        case WorldVariant.Chaos:
+                            switch (playStyle)
+                            {
+                                case WorldVariant.Anthropocene:
+                                    return WorldVariant.Anthropocene;
+                                    break;
+                                case WorldVariant.PostHumanBiome:
+                                    return WorldVariant.PostHumanBiome;
+                                    break;
+                                case WorldVariant.Signal:
+                                    return WorldVariant.Chaos;
+                                    break;
+                                case WorldVariant.Chaos:
+                                    return WorldVariant.Chaos;
+                                    break;
+                            }
+
+                            break;
+                    }
+
+                    break;
+            }
+            
+            return WorldVariant.Chaos;
         }
 
         private void OnDisable()

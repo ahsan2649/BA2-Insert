@@ -32,7 +32,7 @@ namespace Ahsan
             OnNewSongStarted += ResetTimeParams;
             decisionMaker.OnDecisionWindowExit += variant =>
             {
-                PlaySegmentScheduled(segmentSequencer.segments[segmentSequencer.CurrentSegment], variant);
+                PlaySegmentScheduled(segmentSequencer.segments[SegmentSequencer.CurrentSegment], variant);
             };
         }
 

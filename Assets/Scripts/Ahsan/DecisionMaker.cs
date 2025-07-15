@@ -56,8 +56,8 @@ namespace Ahsan
 
         private void SpawnDecisionNotes(Segment segment)
         {
-            lanes[0].SpawnDecisionNote(segment.outcomeA.decisionNotePrefab, 30 / 10, conductor.songPosition + 30 * 100);
-            lanes[1].SpawnDecisionNote(segment.outcomeB.decisionNotePrefab, 30 / 10, conductor.songPosition + 30 * 100);
+            lanes[0].SpawnDecisionNote(segment.outcomeA.decisionNotePrefab, 50 / 10, conductor.songPosition + 50 * 100);
+            lanes[1].SpawnDecisionNote(segment.outcomeB.decisionNotePrefab, 50 / 10, conductor.songPosition + 50 * 100);
         }
 
         private void MakeDecision(WorldVariant variant)

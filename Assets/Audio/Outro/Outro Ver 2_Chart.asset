@@ -1,0 +1,330 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57dff10e28ed4c6182510f71c83a7018, type: 3}
+  m_Name: Outro Ver 2_Chart
+  m_EditorClassIdentifier: 
+  notes:
+  - lane: 0
+    songPosition: 703.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 937.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 1406.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 1992.1875
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 2343.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 2578.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 2812.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 3750
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 4453.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 4687.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 5156.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 5625
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 6093.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 6328.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 6562.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 7500
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 8203.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 8437.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 4
+    songPosition: 8906.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 5
+    songPosition: 9375
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 9843.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 10078.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 10312.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 10781.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 11250
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 11718.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 4
+    songPosition: 12187.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 5
+    songPosition: 12421.875
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 4
+    songPosition: 12656.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 13125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 13593.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 13828.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 14062.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 14531.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 15000
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 15468.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 15937.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 16171.875
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 16406.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 16875
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 4
+    songPosition: 17343.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 5
+    songPosition: 17578.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 4
+    songPosition: 17812.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 18281.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 18750
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 19218.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 19453.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 19687.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 20156.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 20625
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 21093.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 21328.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 21562.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 22031.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 22500
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 22968.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 2
+    songPosition: 23203.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 3
+    songPosition: 23437.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 23906.25
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 24375
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 24843.75
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 0
+    songPosition: 25078.125
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0
+  - lane: 1
+    songPosition: 25312.5
+    isHold: 0
+    holdLength: 0
+    hasSpawned: 0

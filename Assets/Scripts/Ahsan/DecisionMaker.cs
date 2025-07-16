@@ -87,7 +87,7 @@ namespace Ahsan
             }
             else if (misses > 5)
             {
-                val = WorldVariant.Chaos
+                val = WorldVariant.Chaos;
             }
             else
             {

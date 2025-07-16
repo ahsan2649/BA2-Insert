@@ -73,17 +73,21 @@ namespace Ahsan
             }
 
             WorldVariant val;
-            if (hitCombo > 5)
+            if (hitCombo > 7)
             {
                 val = WorldVariant.Anthropocene;
             }
-            else if (missCombo > 5)
+            else if (missCombo > 10)
             {
                 val = WorldVariant.PostHumanBiome;
             }
-            else if (perfectHits > 3 || greatHits > 5)
+            else if (perfectHits > 3 || greatHits > 7)
             {
                 val = WorldVariant.Signal;
+            }
+            else if (misses > 5)
+            {
+                val = WorldVariant.Chaos
             }
             else
             {
@@ -259,7 +263,10 @@ namespace Ahsan
             goodHits = 0;
             greatHits = 0;
             misses = 0;
+            missCombo = 0;
+            hitCombo = 0;
             isDecisionMade = false;
+            selectedVariant = (WorldVariant)Random.Range(1, 4);
 
             if (segment.outcomeA.type == WorldVariant.Outro || segment.outcomeB.type == WorldVariant.Outro)
             {

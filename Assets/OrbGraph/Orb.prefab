@@ -90,16 +90,16 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 4.867284, y: 4.0060663, z: 0, w: 1}
+      - m_Value: {x: 2.888972, y: 3.485359, z: 0, w: 1}
         m_Name: FrontColor
         m_Overridden: 1
-      - m_Value: {x: 2.433642, y: 2.0030332, z: 0, w: 0.5}
+      - m_Value: {x: 1.444486, y: 1.7426795, z: 0, w: 0.5}
         m_Name: BackColor
         m_Overridden: 1
       - m_Value: {x: 0, y: 0.07846314, z: 0.7490196, w: 1}
         m_Name: DarkFlareColor
         m_Overridden: 1
-      - m_Value: {x: 4.867284, y: 4.0060663, z: 0, w: 1}
+      - m_Value: {x: 2.888972, y: 3.485359, z: 0, w: 1}
         m_Name: ColorParticle
         m_Overridden: 1
     m_Uint:

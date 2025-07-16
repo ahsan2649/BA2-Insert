@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Ahsan.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -23,7 +24,7 @@ namespace Ahsan
         public Segment introSegment;
 
         public Action<Segment> OnGameStarted;
-        public Action OnGameEnded;
+        public UnityEvent OnGameEnded;
 
         public NewConductor Conductor;
         private bool filled;
@@ -33,8 +34,8 @@ namespace Ahsan
             slider.onValueChanged.AddListener(CallGameStart);
             OnGameStarted += StartGame;
             Conductor.OnNewSongStarted += CallGameEnd;
-            OnGameEnded += EndGame
-                ;
+            OnGameEnded.AddListener(EndGame);
+                
         }
 
         private void EndGame()

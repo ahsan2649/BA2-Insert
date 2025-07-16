@@ -110,6 +110,9 @@ public class WorldController : MonoBehaviour
         {
             Debug.Log("WorldController: Toggle-based world control active");
         }
+        
+        SetGlitch(defaultNoise, defaultStrength, defaultScan);
+        
     }
 
     void Update()
@@ -405,7 +408,7 @@ public class WorldController : MonoBehaviour
 
     private IEnumerator GlitchEffect()
     {
-        if (glitchMaterial != null)
+        if (glitchMaterial)
         {
             SetGlitch(glitchNoiseAmount, glitchStrength, glitchScanLinesStrength);
             yield return new WaitForSeconds(glitchDuration);

@@ -626,6 +626,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7420686726920697240}
     - target: {fileID: 71476256318761078, guid: 06e4bd264ccdac1418300f0edc010e42, type: 3}
+      propertyPath: glitchDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 71476256318761078, guid: 06e4bd264ccdac1418300f0edc010e42, type: 3}
+      propertyPath: activateAnthropocene
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71476256318761078, guid: 06e4bd264ccdac1418300f0edc010e42, type: 3}
+      propertyPath: glitchScanLinesStrength
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 71476256318761078, guid: 06e4bd264ccdac1418300f0edc010e42, type: 3}
       propertyPath: laneRenderers.Array.size
       value: 6
       objectReference: {fileID: 0}

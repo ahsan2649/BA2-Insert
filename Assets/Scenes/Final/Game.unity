@@ -909,7 +909,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6798208638398583322, guid: 9fef2dc4e91424aa6911d0856e1a6ad1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1548,9 +1549,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2126287769}
     - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: Conductor
+      value: 
+      objectReference: {fileID: 7420686726920697240}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: textGroup
       value: 
       objectReference: {fileID: 2126287767}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'startAnimators.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2126287768}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'startAnimators.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1487906795}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'startAnimators.Array.data[2]'
+      value: 
+      objectReference: {fileID: 643418197}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'startAnimators.Array.data[3]'
+      value: 
+      objectReference: {fileID: 982357535}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'startAnimators.Array.data[4]'
+      value: 
+      objectReference: {fileID: 644271887}
     - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: startAnimators.Array.data[0].animator
       value: 
@@ -1571,6 +1596,26 @@ PrefabInstance:
       propertyPath: startAnimators.Array.data[4].animator
       value: 
       objectReference: {fileID: 644271887}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: startAnimators.Array.data[0].triggerName
+      value: gameStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: startAnimators.Array.data[1].triggerName
+      value: gameStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: startAnimators.Array.data[2].triggerName
+      value: gameStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: startAnimators.Array.data[3].triggerName
+      value: gameStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124704850504498898, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: startAnimators.Array.data[4].triggerName
+      value: gameStart
+      objectReference: {fileID: 0}
     - target: {fileID: 4606401347987298096, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

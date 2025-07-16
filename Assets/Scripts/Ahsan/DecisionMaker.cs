@@ -5,6 +5,7 @@ using Ahsan.ScriptableObjects;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Ahsan
 {
@@ -56,6 +57,10 @@ namespace Ahsan
 
         private void SpawnDecisionNotes(Segment segment)
         {
+            if (segment.outcomeA.type == WorldVariant.Outro || segment.outcomeB.type == WorldVariant.Outro)
+            {
+                return;
+            }
             lanes[0].SpawnDecisionNote(segment.outcomeA.decisionNotePrefab, 50 / 10, conductor.songPosition + 50 * 100);
             lanes[1].SpawnDecisionNote(segment.outcomeB.decisionNotePrefab, 50 / 10, conductor.songPosition + 50 * 100);
         }
@@ -82,7 +87,7 @@ namespace Ahsan
             }
             else
             {
-                val = WorldVariant.Chaos;
+                val = (WorldVariant)Random.Range(1, 4);
             }
             
             selectedVariant = DecisionMatrix(val, variant);
@@ -255,6 +260,12 @@ namespace Ahsan
             greatHits = 0;
             misses = 0;
             isDecisionMade = false;
+
+            if (segment.outcomeA.type == WorldVariant.Outro || segment.outcomeB.type == WorldVariant.Outro)
+            {
+                return;
+            }
+            
             StartCoroutine(InvokeDecisionWindowEnter(segment.WorldVariants[type].decisionWindowStart / 1000, segment));
             StartCoroutine(InvokeDecisionWindowExit(segment.WorldVariants[type].decisionWindowEnd / 1000));
         }

@@ -11,7 +11,8 @@ namespace Ahsan.ScriptableObjects
         Anthropocene,
         PostHumanBiome,
         Signal,
-        Chaos
+        Chaos,
+        Outro
     }
 
     [Serializable]

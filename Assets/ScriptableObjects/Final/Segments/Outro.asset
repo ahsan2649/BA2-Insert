@@ -22,10 +22,10 @@ MonoBehaviour:
   - type: 4
     pair: {fileID: 11400000, guid: 0ea53931070c94cb5919ddc110f79099, type: 2}
   outcomeA:
-    type: 0
+    type: 5
     splinePreset: {fileID: 0}
     decisionNotePrefab: {fileID: 0}
   outcomeB:
-    type: 0
+    type: 5
     splinePreset: {fileID: 0}
     decisionNotePrefab: {fileID: 0}

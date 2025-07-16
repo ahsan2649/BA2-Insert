@@ -1616,6 +1616,34 @@ PrefabInstance:
       propertyPath: startAnimators.Array.data[4].triggerName
       value: gameStart
       objectReference: {fileID: 0}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: segments.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'segments.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e1ee160cd29b46ff8c364fde73b9968, type: 2}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'segments.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1dd48727d5d57486dbcb33f524234b56, type: 2}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'segments.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0687970b9db00465fb43a012ec97e914, type: 2}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'segments.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 93ee20bad5a6c4d4ea6625aa6a9f0a26, type: 2}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'segments.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bda6c3c29da264717874e64ad9612cba, type: 2}
+    - target: {fileID: 3473514022193760606, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
+      propertyPath: 'segments.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 12e270b4adffb4a53a1fe2260f932d48, type: 2}
     - target: {fileID: 4606401347987298096, guid: bd87bbb4964d64bd286033de53273baf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

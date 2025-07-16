@@ -16,5 +16,5 @@ MonoBehaviour:
   chart: {fileID: 11400000, guid: 95fb552b21d51403d823c1bec8dc0f2a, type: 2}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 51500
+  decisionWindowStart: 51700
   decisionWindowEnd: 59000

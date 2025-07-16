@@ -614,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7f401a7b91734db48ffd6e8e0b05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 0}
   waveDirection: {x: -1, y: 0, z: 0}
   frequency: 1
   amplitude: 0.1
@@ -651,8 +652,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49be5060c50b94dd59d5b36a5d968f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
-  morphSpeed: 0
+  morpherVariant: 3
+  closed: 0
+  decisionMaker: {fileID: 0}
+  spline: {fileID: 2488258274529324196}
+  morphSpeed: 3
   _targetSpline: {fileID: 0}
   showDebugGUI: 0
 --- !u!114 &3308690218418287253
@@ -676,7 +680,15 @@ MonoBehaviour:
     m_Id: f61e8450-b5a6-4525-9bb2-9796bc35d8e3
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c675eca4-6ae6-4d36-9f5e-3aafa0f76434
+      m_Path: <Keyboard>/j
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Key
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &2001602629483577981
 GameObject:
@@ -1292,6 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7f401a7b91734db48ffd6e8e0b05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 0}
   waveDirection: {x: 1, y: 0, z: 0}
   frequency: 1
   amplitude: 0.1
@@ -1329,8 +1342,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49be5060c50b94dd59d5b36a5d968f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
-  morphSpeed: 0
+  morpherVariant: 2
+  closed: 1
+  decisionMaker: {fileID: 0}
+  spline: {fileID: 7780869273964403913}
+  morphSpeed: 3
   _targetSpline: {fileID: 0}
   showDebugGUI: 0
 --- !u!114 &6431341967079846176
@@ -1354,7 +1370,15 @@ MonoBehaviour:
     m_Id: 4338f04f-829d-4704-adfb-2e32acde01fb
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 03aefd15-5d2a-4d2c-b23c-1c7ce2f39041
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Key
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &2868662103597695638
 GameObject:
@@ -1888,6 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7f401a7b91734db48ffd6e8e0b05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 0}
   waveDirection: {x: 0, y: 1, z: 0}
   frequency: 1
   amplitude: 0.2
@@ -1915,7 +1940,15 @@ MonoBehaviour:
     m_Id: 8a5a2609-6c48-4bb4-8313-f93bced789c1
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 03aefd15-5d2a-4d2c-b23c-1c7ce2f39041
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Key
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &3161898936097029775
 GameObject:
@@ -2531,6 +2564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7f401a7b91734db48ffd6e8e0b05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 0}
   waveDirection: {x: 1, y: 0, z: 0}
   frequency: 1
   amplitude: 0.1
@@ -2568,8 +2602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49be5060c50b94dd59d5b36a5d968f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
-  morphSpeed: 0
+  morpherVariant: 1
+  closed: 1
+  decisionMaker: {fileID: 0}
+  spline: {fileID: 373788433466555253}
+  morphSpeed: 3
   _targetSpline: {fileID: 0}
   showDebugGUI: 0
 --- !u!114 &1741716180814348278
@@ -2593,7 +2630,15 @@ MonoBehaviour:
     m_Id: 245ccc93-78d2-4e48-804c-e9054944645e
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 03aefd15-5d2a-4d2c-b23c-1c7ce2f39041
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Key
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &5586127750720183039
 GameObject:
@@ -3127,6 +3172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7f401a7b91734db48ffd6e8e0b05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 0}
   waveDirection: {x: 0, y: 1, z: 0}
   frequency: 1
   amplitude: 0.2
@@ -3154,7 +3200,15 @@ MonoBehaviour:
     m_Id: bf2ba327-f699-4fc6-8e46-f07f707159c6
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c675eca4-6ae6-4d36-9f5e-3aafa0f76434
+      m_Path: <Keyboard>/j
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Key
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &7002445370779754080
 GameObject:
@@ -3770,6 +3824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7f401a7b91734db48ffd6e8e0b05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decisionMaker: {fileID: 0}
   waveDirection: {x: -1, y: 0, z: 0}
   frequency: 1
   amplitude: 0.1
@@ -3807,8 +3862,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49be5060c50b94dd59d5b36a5d968f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
-  morphSpeed: 0
+  morpherVariant: 4
+  closed: 0
+  decisionMaker: {fileID: 0}
+  spline: {fileID: 8030551903207950136}
+  morphSpeed: 3
   _targetSpline: {fileID: 0}
   showDebugGUI: 0
 --- !u!114 &7228859390892057173
@@ -3832,7 +3890,15 @@ MonoBehaviour:
     m_Id: 3904f71d-a508-4a8a-8f1f-44b2ec7b6ccc
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c675eca4-6ae6-4d36-9f5e-3aafa0f76434
+      m_Path: <Keyboard>/j
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Key
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &8002607908307881916
 GameObject:

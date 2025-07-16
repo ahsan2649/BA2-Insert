@@ -60,6 +60,11 @@ namespace Ahsan
 			Conductor.OnNewSongStarted += SetCurrentChart;
 		}
 
+		public void SetScrollSpeed(float val)
+		{
+			ScrollSpeed = Mathf.Lerp(30, 5, val);
+		}
+
 		private void OnDisable()
 		{
 			Conductor.OnNewSongStarted -= SetCurrentChart;

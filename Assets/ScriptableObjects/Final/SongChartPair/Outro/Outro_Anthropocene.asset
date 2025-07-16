@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8c783e6e334d4a99a92879d8fd601b3, type: 3}
-  m_Name: Segment4_PostHumanBiome
+  m_Name: Outro_Anthropocene
   m_EditorClassIdentifier: 
-  audioFile: {fileID: 8300000, guid: 71fa042aa541341048af3baaa5b98430, type: 3}
-  chart: {fileID: 11400000, guid: 39896a0bdecc449a1bcd5f047fdc9db1, type: 2}
+  audioFile: {fileID: 8300000, guid: d9e1ab7166ccf4359af6f101a996fdb0, type: 3}
+  chart: {fileID: 11400000, guid: 64023d118279840dd9da65fdcf1dcfdb, type: 2}
   bpm: 0
   firstBeatOffset: 0
-  decisionWindowStart: 54375
-  decisionWindowEnd: 59000
+  decisionWindowStart: 0
+  decisionWindowEnd: 0

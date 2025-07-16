@@ -66,6 +66,7 @@ namespace Ahsan
 
 		public void DestroyNote(Note note)
 		{
+			note.SpawnHitParticle();
 			OnNoteDestroyed?.Invoke(note.hitTime);
 			if (note.isDecisionNote)
 			{

@@ -121,7 +121,7 @@ public class WorldController : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         // Unsubscribe from events to prevent memory leaks
         if (newConductor != null)

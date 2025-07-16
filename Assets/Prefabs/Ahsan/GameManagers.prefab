@@ -312,6 +312,10 @@ MonoBehaviour:
     animator: {fileID: 0}
   - triggerName: fade
     animator: {fileID: 0}
+  - triggerName: slideUI
+    animator: {fileID: 0}
+  - triggerName: titleOut
+    animator: {fileID: 0}
   introSegment: {fileID: 11400000, guid: 2e1ee160cd29b46ff8c364fde73b9968, type: 2}
 --- !u!1 &5835405471971204089
 GameObject:
@@ -545,7 +549,7 @@ MonoBehaviour:
   goodHits: 0
   greatHits: 0
   misses: 0
-  selectedVariant: 3
+  selectedVariant: 2
 --- !u!1 &9185478154708192012
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,5 +601,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0687970b9db00465fb43a012ec97e914, type: 2}
   - {fileID: 11400000, guid: 93ee20bad5a6c4d4ea6625aa6a9f0a26, type: 2}
   - {fileID: 11400000, guid: bda6c3c29da264717874e64ad9612cba, type: 2}
-  currentSegment: -1
-  currentWorldVariant: 1
+  - {fileID: 11400000, guid: 12e270b4adffb4a53a1fe2260f932d48, type: 2}
+  currentWorldVariant: 0

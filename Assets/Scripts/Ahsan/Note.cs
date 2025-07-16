@@ -17,7 +17,7 @@ namespace Ahsan
         public GameObject hitParticlePrefab;
 
 
-        private void OnDestroy()
+        public void SpawnHitParticle()
         {
             // spawn the hit particle at this note's position
             if (hitParticlePrefab != null)

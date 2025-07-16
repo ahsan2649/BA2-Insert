@@ -97,6 +97,8 @@ namespace Ahsan
             OnNewSongStarted?.Invoke(segment, type);
         }
 
+#if DEBUG
+        
         private void OnGUI()
         {
             if (showDebugGUI)
@@ -105,5 +107,7 @@ namespace Ahsan
                 
             }
         }
+#endif
+        
     }
 }

@@ -69,6 +69,7 @@ namespace Ahsan
             );
         }
 
+#if DEBUG
         private void OnGUI()
         {
             if (showDebugGUI)
@@ -84,6 +85,7 @@ namespace Ahsan
                 }
             }
         }
+#endif
 
         void MorphTo(SplinePreset target)
         {
